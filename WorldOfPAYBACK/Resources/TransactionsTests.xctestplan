@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "E7EC43FB-17DC-440C-9A9E-9AD37949BF1A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "TransactionsTests",
+        "name" : "TransactionsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
