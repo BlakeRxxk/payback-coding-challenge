@@ -1,5 +1,5 @@
 import XCTest
-@testable import Feed
+//@testable import Feed
 
 final class FeedTests: XCTestCase {
     func testExample() throws {

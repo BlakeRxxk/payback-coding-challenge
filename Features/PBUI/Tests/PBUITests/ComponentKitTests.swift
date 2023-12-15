@@ -1,5 +1,5 @@
 import XCTest
-@testable import ComponentKit
+//@testable import ComponentKit
 
 final class ComponentKitTests: XCTestCase {
     func testExample() throws {

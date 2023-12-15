@@ -3,6 +3,8 @@ import PBCore
 import SwiftUI
 import TransactionsAPI
 
+// MARK: - TransactionsViewModel
+
 final class TransactionsViewModel: ObservableObject {
 
     // MARK: Lifecycle
@@ -89,8 +91,9 @@ final class TransactionsViewModel: ObservableObject {
     func filterTransactions() {
         var result = cachedTransactios
 
-        result = apply(filter: selectedCategory, for: result)
-        result = apply(filter: searchText, for: result)
+        result = result
+            .apply(filter: selectedCategory)
+            .apply(filter: searchText)
 
         state = .transactions(result)
         isFiltered = !searchText.isEmpty || selectedCategory != nil
@@ -123,23 +126,109 @@ final class TransactionsViewModel: ObservableObject {
             .map { Category(id: $0.category, title: "Category: \($0.category)", value: $0.category) }
             .sorted { $0.value < $1.value }
     }
+}
 
-    private func apply(filter category: Category?, for items: [PBTransaction]) -> [PBTransaction] {
-        if let category {
-            items.filter { $0.category == category.value }
-        } else {
-            items
-        }
+
+// MARK: - TransactionsReducer
+
+final class TransactionsReducer: Reducer {
+
+    // MARK: Lifecycle
+
+    init(transactionsService: TransactionsService) {
+        self.transactionsService = transactionsService
     }
 
-    private func apply(filter searchText: String, for items: [PBTransaction]) -> [PBTransaction] {
-        if !searchText.isEmpty {
-            items.filter {
-                FuzzyMatching.search(for: searchText, in: $0.partnerDisplayName)
+    // MARK: Internal
+
+    enum Action: Sendable {
+        case fetchTransactions
+        case refreshTRansactions
+
+        case set([PBTransaction], [Category])
+        case setTransactions([PBTransaction])
+        case setFiltered(Bool)
+        case applyFilters
+        case setError
+        case none
+    }
+
+    struct State: Sendable, Equatable {
+        var transactions: [PBTransaction]
+        var cachedTransactios: [PBTransaction]
+        var categories: [Category]
+        var selectedCategory: Category?
+        var searchText = ""
+        var hasError: Bool
+        var isFiltered = false
+    }
+
+    func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
+        switch action {
+        case .fetchTransactions:
+            return .single { [weak self] in
+                guard let self else { return .none }
+                return await fetchTransactions()
             }
-        } else {
-            items
+        case .refreshTRansactions:
+            return .concat(
+                .single { [weak self] in
+                    guard let self else { return .none }
+                    return await fetchTransactions()
+                },
+                .just(.applyFilters))
+        case .set(let transactions, let categories):
+            state.categories = categories
+            state.transactions = transactions
+            state.cachedTransactios = transactions
+            return .none
+        case .setError:
+            state.hasError = true
+            return .none
+        case .applyFilters:
+            var result = state.cachedTransactios
+            result = result
+                .apply(filter: state.selectedCategory)
+                .apply(filter: state.searchText)
+            let isFiltered = !state.searchText.isEmpty || state.selectedCategory != nil
+            return .concat(
+                .just(.setTransactions(result)),
+                .just(.setFiltered(isFiltered)))
+        case .setTransactions(let transactions):
+            state.transactions = transactions
+            return .none
+        case .setFiltered(let isFiltered):
+            state.isFiltered = isFiltered
+            return .none
+        case .none:
+            return .none
         }
     }
 
+    // MARK: Private
+
+
+    private let transactionsService: TransactionsService
+    private func fetchTransactions() async -> Action {
+        do {
+            let response = try await transactionsService.fetchTansactions()
+            let transactions = sort(transactions: response)
+            let categories = extractCategories(from: response)
+
+            return .set(transactions, categories)
+        } catch {
+            return .setError
+        }
+    }
+
+    private func sort(transactions items: [PBTransaction]) -> [PBTransaction] {
+        items.sorted(by: { $0.transactionDetail.bookingDate > $1.transactionDetail.bookingDate })
+    }
+
+    private func extractCategories(from items: [PBTransaction]) -> [Category] {
+        items
+            .unique { $0.category }
+            .map { Category(id: $0.category, title: "Category: \($0.category)", value: $0.category) }
+            .sorted { $0.value < $1.value }
+    }
 }

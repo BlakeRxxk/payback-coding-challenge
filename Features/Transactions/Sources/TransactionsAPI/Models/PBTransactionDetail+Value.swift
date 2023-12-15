@@ -14,6 +14,6 @@ extension PBTransaction.Detail {
     }
 }
 
-// MARK: - PBTransaction.Detail.Value + Codable, Hashable
+// MARK: - PBTransaction.Detail.Value + Codable, Hashable, Sendable
 
-extension PBTransaction.Detail.Value: Codable, Hashable { }
+extension PBTransaction.Detail.Value: Codable, Hashable, Sendable { }

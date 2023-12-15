@@ -12,6 +12,6 @@ extension PBTransaction {
     }
 }
 
-// MARK: - PBTransaction.Alias + Codable, Hashable
+// MARK: - PBTransaction.Alias + Codable, Hashable, Sendable
 
-extension PBTransaction.Alias: Codable, Hashable { }
+extension PBTransaction.Alias: Codable, Hashable, Sendable { }

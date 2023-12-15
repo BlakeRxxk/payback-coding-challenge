@@ -6,6 +6,6 @@ public enum Currency: String {
     case PBP
 }
 
-// MARK: Codable, Hashable
+// MARK: Codable, Hashable, Sendable
 
-extension Currency: Codable, Hashable { }
+extension Currency: Codable, Hashable, Sendable { }

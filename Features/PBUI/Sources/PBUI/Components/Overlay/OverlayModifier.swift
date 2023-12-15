@@ -15,10 +15,12 @@ public struct OverlayModifier<T: View>: ViewModifier {
         ZStack {
             content
             if isPresented {
-                block(content)
-                    .offset(y: isPresented ? 0 : 120)
-                    .animation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0))
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0)) {
+                    block(content)
+                        .offset(y: isPresented ? 0 : 120)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+                
             }
         }
     }

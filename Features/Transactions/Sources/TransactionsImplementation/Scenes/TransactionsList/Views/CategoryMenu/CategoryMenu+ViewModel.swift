@@ -10,8 +10,12 @@ extension CategoryMenu {
 
 // MARK: - Category
 
-struct Category: Hashable, Identifiable {
+struct Category {
     let id: Int
     let title: String
     let value: Int
 }
+
+// MARK: Hashable, Identifiable, Sendable
+
+extension Category: Hashable, Identifiable, Sendable { }

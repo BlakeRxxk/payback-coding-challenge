@@ -9,7 +9,7 @@ struct TransactionsListScene: View {
     // MARK: Lifecycle
 
     init(viewModel: TransactionsViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: Internal
@@ -60,7 +60,7 @@ struct TransactionsListScene: View {
 
     // MARK: Private
 
-    @ObservedObject
+    @StateObject
     private var viewModel: TransactionsViewModel
 }
 

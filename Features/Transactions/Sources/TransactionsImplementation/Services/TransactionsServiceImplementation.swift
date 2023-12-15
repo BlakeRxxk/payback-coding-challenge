@@ -21,10 +21,11 @@ public final class TransactionsServiceImplementation {
 
 extension TransactionsServiceImplementation: TransactionsService {
     public func fetchTansactions() async throws -> [PBTransaction] {
-        let responseObject: TransactionsResponse = try await networkClient.request(.get, TransactionsRoute.all, parameters: nil)
-        let sortedItems = responseObject.items.sorted(by: { lhs, rhs in
-            lhs.transactionDetail.bookingDate < rhs.transactionDetail.bookingDate
+        let responseObject: TransactionsResponse = try await networkClient
+            .request(.get, TransactionsRoute.all, parameters: nil)
+
+        return responseObject.items.sorted(by: {
+            $0.transactionDetail.bookingDate < $1.transactionDetail.bookingDate
         })
-        return sortedItems
     }
 }

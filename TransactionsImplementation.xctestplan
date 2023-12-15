@@ -1,0 +1,73 @@
+{
+  "configurations" : [
+    {
+      "id" : "77FEE06E-ABC8-4855-9017-A69260CD4773",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:..\/Feed",
+        "identifier" : "FeedTests",
+        "name" : "FeedTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:..\/NetworkAPI",
+        "identifier" : "NetworkAPITests",
+        "name" : "NetworkAPITests"
+      }
+    },
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:..\/PBCore",
+        "identifier" : "PBCoreTests",
+        "name" : "PBCoreTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:..\/PBUI",
+        "identifier" : "PBUITests",
+        "name" : "PBUITests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "TransactionsTests",
+        "name" : "TransactionsTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:..\/..\/WorldOfPAYBACK.xcodeproj",
+        "identifier" : "AA2C8CD62AD469FB006A2968",
+        "name" : "WorldOfPAYBACKTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:..\/..\/WorldOfPAYBACK.xcodeproj",
+        "identifier" : "AA2C8CE02AD469FB006A2968",
+        "name" : "WorldOfPAYBACKUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

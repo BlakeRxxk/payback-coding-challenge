@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -70,6 +70,7 @@
 		AA6319FF2ADC305700F810F3 /* RootComponent+Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Transactions.swift"; sourceTree = "<group>"; };
 		AA631A022ADC341B00F810F3 /* TransactionsTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TransactionsTests.xctestplan; sourceTree = "<group>"; };
 		AA8BA2C72AD8222300D105C6 /* PBUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PBUI; sourceTree = "<group>"; };
+		AAC664622B12471F00BDD247 /* TransactionsImplementation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TransactionsImplementation.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,15 +105,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35A3B0F6C62913C979D1A12D /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = xcschemes;
+			path = WorldOfPAYBACK.xcodeproj/project.xcworkspace/xcuserdata/rxxk.xcuserdatad/xcschemes;
+			sourceTree = "<group>";
+		};
 		AA2C8CBE2AD469F8006A2968 = {
 			isa = PBXGroup;
 			children = (
+				AAC664622B12471F00BDD247 /* TransactionsImplementation.xctestplan */,
 				AA2C8CF42AD46AEB006A2968 /* Features */,
 				AA2C8CC92AD469F9006A2968 /* WorldOfPAYBACK */,
 				AA2C8CDA2AD469FB006A2968 /* WorldOfPAYBACKTests */,
 				AA2C8CE42AD469FB006A2968 /* WorldOfPAYBACKUITests */,
 				AA2C8CC82AD469F9006A2968 /* Products */,
 				AA2C8CFE2AD6DAAA006A2968 /* Frameworks */,
+				35A3B0F6C62913C979D1A12D /* xcschemes */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,7 +310,7 @@
 				};
 			};
 			buildConfigurationList = AA2C8CC22AD469F8006A2968 /* Build configuration list for PBXProject "WorldOfPAYBACK" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -543,6 +554,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = personal.blakerxxk.com.WorldOfPAYBACK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -576,6 +588,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = personal.blakerxxk.com.WorldOfPAYBACK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

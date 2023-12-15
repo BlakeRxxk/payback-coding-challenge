@@ -16,9 +16,9 @@ public struct PBTransaction {
     }
 }
 
-// MARK: Codable, Hashable
+// MARK: Codable, Hashable, Sendable
 
-extension PBTransaction: Codable, Hashable { }
+extension PBTransaction: Codable, Hashable, Sendable { }
 
 // MARK: Identifiable
 

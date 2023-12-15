@@ -16,6 +16,7 @@ struct WorldOfPAYBACKApp: App {
         }
     }
     
+    @MainActor
     private func setupAppearance() {
         UITabBar.appearance().backgroundColor = UIColor(Color.Shades.shade1)
         UITabBar.appearance().backgroundImage = UIImage()
