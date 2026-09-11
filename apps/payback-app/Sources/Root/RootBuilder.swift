@@ -1,4 +1,6 @@
 import Core
+import FeedImplementation
+import TransactionsImplementation
 
 // MARK: - RootBuildable
 
@@ -20,7 +22,13 @@ final class RootBuilder: Builder<AppComponent>, RootBuildable {
 
     func build() -> RootRouting {
         let viewController = RootViewController()
-        let interactor = RootInteractor(appComponent: dependency, viewController: viewController)
-        return RootRouter(interactor: interactor, viewController: viewController)
+        let interactor = RootInteractor()
+        let transactionsBuilder = TransactionsBuilder(dependency: dependency.transactionsComponent)
+        let feedBuilder = FeedBuilder(dependency: dependency.feedComponent)
+        return RootRouter(
+            interactor: interactor,
+            viewController: viewController,
+            transactionsBuilder: transactionsBuilder,
+            feedBuilder: feedBuilder)
     }
 }

@@ -1,29 +1,35 @@
 import Core
-import NetworkingAPI
-import SwiftUI
+import NeedleFoundation
 import TransactionsAPI
 
 // MARK: - TransactionsDependency
 
-public protocol TransactionsDependency: Dependency {
+public protocol TransactionsDependency: NeedleFoundation.Dependency {
     var transactionsService: TransactionsService { get }
 }
 
 // MARK: - TransactionsComponent
 
-public final class TransactionsComponent: Component<TransactionsDependency>, Viewable {
+public final class TransactionsComponent: NeedleFoundation.Component<TransactionsDependency>, TransactionsDependency {
+
+    // MARK: Lifecycle
+
+    public override init(parent: NeedleFoundation.Scope) {
+        super.init(parent: parent)
+    }
 
     // MARK: Public
 
-    public var view: some View {
-        NavigationView {
-            TransactionsListScene(viewModel: transactionsViewModel)
-        }
+    public var transactionsService: TransactionsService {
+        dependency.transactionsService
     }
 
     // MARK: Internal
 
+    @MainActor
     var transactionsViewModel: TransactionsViewModel {
-        TransactionsViewModel(transactionsService: dependency.transactionsService)
+        shared {
+            TransactionsViewModel(transactionsService: transactionsService)
+        }
     }
 }

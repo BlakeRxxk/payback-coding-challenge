@@ -16,6 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main"),
+        .package(url: "https://github.com/uber/needle", from: "0.25.0"),
         .package(name: "Transactions", path: "../transactions"),
         .package(name: "Core", path: "../../core"),
     ],
@@ -34,6 +35,7 @@ let package = Package(
                 "FeedAPI",
                 .product(name: "TransactionsAPI", package: "Transactions"),
                 .product(name: "Core", package: "Core"),
+                .product(name: "NeedleFoundation", package: "needle"),
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),

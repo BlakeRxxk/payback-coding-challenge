@@ -16,6 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main"),
+        .package(url: "https://github.com/uber/needle", from: "0.25.0"),
         .package(name: "Networking", path: "../../networking"),
         .package(name: "Core", path: "../../core"),
         .package(name: "DesignSystem", path: "../../design-system"),
@@ -34,6 +35,7 @@ let package = Package(
                 .product(name: "NetworkingAPI", package: "Networking"),
                 .product(name: "Core", package: "Core"),
                 .product(name: "DesignSystem", package: "DesignSystem"),
+                .product(name: "NeedleFoundation", package: "needle"),
             ],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug)),

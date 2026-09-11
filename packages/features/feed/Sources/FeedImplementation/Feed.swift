@@ -1,26 +1,34 @@
 import Core
-import SwiftUI
+import NeedleFoundation
 import TransactionsAPI
 
 // MARK: - FeedDependency
 
-public protocol FeedDependency: Dependency {
+public protocol FeedDependency: NeedleFoundation.Dependency {
     var transactionsService: TransactionsService { get }
 }
 
 // MARK: - FeedComponent
 
-public final class FeedComponent: Component<FeedDependency>, Viewable {
+public final class FeedComponent: NeedleFoundation.Component<FeedDependency>, FeedDependency {
+
+    // MARK: Lifecycle
+
+    public override init(parent: NeedleFoundation.Scope) {
+        super.init(parent: parent)
+    }
 
     // MARK: Public
 
-    public var view: some View {
-        Text("Placeholder for Feed Feature")
+    public var transactionsService: TransactionsService {
+        dependency.transactionsService
     }
 
     // MARK: Internal
 
-    var transactionsViewModel: FeedViewModel {
-        FeedViewModel(transactionsService: dependency.transactionsService)
+    var feedViewModel: FeedViewModel {
+        shared {
+            FeedViewModel(transactionsService: transactionsService)
+        }
     }
 }
