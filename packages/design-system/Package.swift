@@ -19,12 +19,14 @@ let package = Package(
             name: "DesignSystem",
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ]),
+            ],
+            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ]),
+            ],
+            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
     ]
 )

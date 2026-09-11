@@ -24,7 +24,8 @@ let package = Package(
         .target(name: "TransactionsAPI", dependencies: [],
                 swiftSettings: [
                     .enableExperimentalFeature("StrictConcurrency"),
-                ]),
+                ],
+                plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
         .target(
             name: "TransactionsImplementation",
             dependencies: [
@@ -37,13 +38,15 @@ let package = Package(
                 .define("DEBUG", .when(configuration: .debug)),
                 .define("RELEASE", .when(configuration: .release)),
                 .enableExperimentalFeature("StrictConcurrency"),
-            ]
+            ],
+            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]
         ),
         .testTarget(
             name: "TransactionsTests",
             dependencies: ["TransactionsImplementation"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ]),
+            ],
+            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
     ]
 )

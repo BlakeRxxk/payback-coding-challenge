@@ -21,16 +21,19 @@ let package = Package(
         .target(name: "NetworkingAPI", dependencies: [],
                 swiftSettings: [
                     .enableExperimentalFeature("StrictConcurrency"),
-                ]),
+                ],
+                plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
         .target(name: "NetworkingImplementation", dependencies: ["NetworkingAPI"],
                 swiftSettings: [
                     .enableExperimentalFeature("StrictConcurrency"),
-                ]),
+                ],
+                plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
         .testTarget(
             name: "NetworkingAPITests",
             dependencies: ["NetworkingAPI"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ]),
+            ],
+            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
     ]
 )
