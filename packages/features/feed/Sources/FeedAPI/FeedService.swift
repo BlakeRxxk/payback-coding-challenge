@@ -3,5 +3,5 @@
 import TransactionsAPI
 
 public protocol FeedService: Sendable {
-    func fetchFeed() async throws -> [PBTransaction]
+    func fetchFeed() async throws -> [PaymentTransaction]
 }

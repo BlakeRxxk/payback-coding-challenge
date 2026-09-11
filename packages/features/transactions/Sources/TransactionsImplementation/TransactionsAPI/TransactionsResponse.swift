@@ -4,7 +4,7 @@ import TransactionsAPI
 // MARK: - TransactionsResponse
 
 public struct TransactionsResponse {
-    public let items: [PBTransaction]
+    public let items: [PaymentTransaction]
 }
 
 // MARK: Codable, Hashable

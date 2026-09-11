@@ -9,7 +9,7 @@ extension TotalAmount {
         let totalAmount: String
         let currency: String
 
-        init(title: String, transactions: [PBTransaction]) {
+        init(title: String, transactions: [PaymentTransaction]) {
             self.title = title
             let total = transactions.map { $0.transactionDetail.value.amount }.reduce(0, +)
             /// While all the current transactions in PBP, we can leave it as it is. A refactoring will be required to support multiple currencies.

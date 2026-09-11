@@ -1,11 +1,11 @@
 import Core
 import TransactionsAPI
 
-extension [PBTransaction] {
+extension [PaymentTransaction] {
     
     /// Fuzzy matching by partnerDisplayName
     /// - Parameter text: search string
-    /// - Returns:  Filtered array of PBTransaction if search text not empty
+    /// - Returns:  Filtered array of PaymentTransaction if search text not empty
     func apply(filter text: String) -> [Iterator.Element] {
         guard !text.isEmpty else {
             return self
@@ -18,7 +18,7 @@ extension [PBTransaction] {
     
     /// Filter array by category
     /// - Parameter category: selected category
-    /// - Returns: Filtered array of PBTransaction if category not nil
+    /// - Returns: Filtered array of PaymentTransaction if category not nil
     func apply(filter category: Category?) -> [Iterator.Element] {
         guard let category else {
             return self

@@ -57,7 +57,7 @@ struct TransactionsList: View {
     private var presentationMode: Binding<PresentationMode>
 
     @State
-    private var selectedTransaction: PBTransaction? = nil
+    private var selectedTransaction: PaymentTransaction? = nil
 }
 
 // MARK: TransactionsList.Localized
