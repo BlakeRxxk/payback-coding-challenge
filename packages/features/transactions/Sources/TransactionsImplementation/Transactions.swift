@@ -11,7 +11,7 @@ public protocol TransactionsDependency: Dependency {
 
 // MARK: - TransactionsComponent
 
-public final class TransactionsComponent: Component<TransactionsDependency>, Viewable {
+public final class TransactionsComponent: Component<TransactionsDependency>, Viewable, @unchecked Sendable {
 
     // MARK: Public
 

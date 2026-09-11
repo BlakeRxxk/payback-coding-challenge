@@ -5,6 +5,7 @@ public typealias LinkButton = LinkButtonStyleFactory
 // MARK: - LinkButtonStyleFactory
 
 public enum LinkButtonStyleFactory {
+    @MainActor
     public static func makeDefaultStyle() -> LinkButtonStyle {
         LinkButtonStyle(
             foreground:

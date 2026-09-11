@@ -5,6 +5,7 @@ import TransactionsAPI
 
 // MARK: - TransactionsViewModel
 
+@MainActor
 final class TransactionsViewModel: ObservableObject {
 
     // MARK: Lifecycle
