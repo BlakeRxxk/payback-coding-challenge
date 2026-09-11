@@ -14,7 +14,7 @@ extension TransactionDetail {
             self.details = details
         }
 
-        init(from transaction: PBTransaction) {
+        init(from transaction: PaymentTransaction) {
             title = transaction.partnerDisplayName
             details = [
                 .init(

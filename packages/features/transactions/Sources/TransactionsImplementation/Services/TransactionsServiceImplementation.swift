@@ -20,7 +20,7 @@ public final class TransactionsServiceImplementation {
 // MARK: TransactionsService
 
 extension TransactionsServiceImplementation: TransactionsService {
-    public func fetchTansactions() async throws -> [PBTransaction] {
+    public func fetchTansactions() async throws -> [PaymentTransaction] {
         let responseObject: TransactionsResponse = try await networkClient
             .request(.get, TransactionsRoute.all, parameters: nil)
 

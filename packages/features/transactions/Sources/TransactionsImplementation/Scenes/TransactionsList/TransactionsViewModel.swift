@@ -19,15 +19,15 @@ final class TransactionsViewModel: ObservableObject {
     enum State: Equatable, Sendable {
         case idle
         case loading
-        case transactions([PBTransaction])
+        case transactions([PaymentTransaction])
         case error
     }
 
-    @Published private(set) var transactions: [PBTransaction] = []
+    @Published private(set) var transactions: [PaymentTransaction] = []
     @Published private(set) var state: TransactionsViewModel.State = .idle
     @Published private(set) var categories: [Category] = []
     @Published var hasError = false
-    var cachedTransactios: [PBTransaction] = []
+    var cachedTransactios: [PaymentTransaction] = []
     @Published var isFiltered = false
 
     @Published var searchText = "" {
@@ -115,13 +115,13 @@ final class TransactionsViewModel: ObservableObject {
 
     private let transactionsService: TransactionsService
 
-    private func sort(transactions items: [PBTransaction]) -> [PBTransaction] {
+    private func sort(transactions items: [PaymentTransaction]) -> [PaymentTransaction] {
         items.sorted(by: { lhs, rhs in
             lhs.transactionDetail.bookingDate > rhs.transactionDetail.bookingDate
         })
     }
 
-    private func extractCategories(from items: [PBTransaction]) -> [Category] {
+    private func extractCategories(from items: [PaymentTransaction]) -> [Category] {
         items
             .unique { $0.category }
             .map { Category(id: $0.category, title: "Category: \($0.category)", value: $0.category) }
@@ -146,8 +146,8 @@ final class TransactionsReducer: Reducer {
         case fetchTransactions
         case refreshTRansactions
 
-        case set([PBTransaction], [Category])
-        case setTransactions([PBTransaction])
+        case set([PaymentTransaction], [Category])
+        case setTransactions([PaymentTransaction])
         case setFiltered(Bool)
         case applyFilters
         case setError
@@ -155,8 +155,8 @@ final class TransactionsReducer: Reducer {
     }
 
     struct State: Sendable, Equatable {
-        var transactions: [PBTransaction]
-        var cachedTransactios: [PBTransaction]
+        var transactions: [PaymentTransaction]
+        var cachedTransactios: [PaymentTransaction]
         var categories: [Category]
         var selectedCategory: Category?
         var searchText = ""
@@ -222,11 +222,11 @@ final class TransactionsReducer: Reducer {
         }
     }
 
-    private func sort(transactions items: [PBTransaction]) -> [PBTransaction] {
+    private func sort(transactions items: [PaymentTransaction]) -> [PaymentTransaction] {
         items.sorted(by: { $0.transactionDetail.bookingDate > $1.transactionDetail.bookingDate })
     }
 
-    private func extractCategories(from items: [PBTransaction]) -> [Category] {
+    private func extractCategories(from items: [PaymentTransaction]) -> [Category] {
         items
             .unique { $0.category }
             .map { Category(id: $0.category, title: "Category: \($0.category)", value: $0.category) }
