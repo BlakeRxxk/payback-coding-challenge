@@ -1,8 +1,8 @@
 import Foundation
 
-// MARK: - PBTransaction.Detail.Value
+// MARK: - PaymentTransaction.Detail.Value
 
-extension PBTransaction.Detail {
+extension PaymentTransaction.Detail {
     public struct Value {
         public let amount: Int
         public let currency: Currency
@@ -14,6 +14,6 @@ extension PBTransaction.Detail {
     }
 }
 
-// MARK: - PBTransaction.Detail.Value + Codable, Hashable, Sendable
+// MARK: - PaymentTransaction.Detail.Value + Codable, Hashable, Sendable
 
-extension PBTransaction.Detail.Value: Codable, Hashable, Sendable { }
+extension PaymentTransaction.Detail.Value: Codable, Hashable, Sendable { }

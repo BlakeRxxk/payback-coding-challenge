@@ -3,5 +3,5 @@ import Foundation
 // MARK: - TransactionsService
 
 public protocol TransactionsService: Sendable {
-    func fetchTansactions() async throws -> [PBTransaction]
+    func fetchTansactions() async throws -> [PaymentTransaction]
 }

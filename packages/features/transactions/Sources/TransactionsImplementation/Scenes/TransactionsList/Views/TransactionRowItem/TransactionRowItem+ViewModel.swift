@@ -9,7 +9,7 @@ extension TransactionRowItem {
         let description: String?
         let amount: String
 
-        init(from transaction: PBTransaction) {
+        init(from transaction: PaymentTransaction) {
             displayName = transaction.partnerDisplayName
             bookingDate = DateFactory.dateOutputFormatter.string(from: transaction.transactionDetail.bookingDate)
             description = transaction.transactionDetail.description
