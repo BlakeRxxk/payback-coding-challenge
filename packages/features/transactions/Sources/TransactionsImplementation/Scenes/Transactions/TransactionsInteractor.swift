@@ -1,8 +1,10 @@
+import Combine
 import Core
+import TransactionsAPI
 
 // MARK: - TransactionsInteractable
 
-protocol TransactionsInteractable: Interactable { }
+protocol TransactionsInteractable: Interactable, TransactionsListListener, TransactionsDetailsListener { }
 
 // MARK: - TransactionsInteractor
 
@@ -10,23 +12,53 @@ final class TransactionsInteractor: Interactor, TransactionsInteractable {
 
     // MARK: Lifecycle
 
-    init(component: TransactionsComponent, viewController: TransactionsViewControllable) {
+    init(component: TransactionsComponent) {
         self.component = component
-        self.viewController = viewController
     }
 
     // MARK: Internal
+
+    weak var router: TransactionsRouter?
+
+    // MARK: Interactor
 
     override func didBecomeActive() {
         super.didBecomeActive()
         Task { @MainActor in
             let viewModel = component.transactionsViewModel
-            viewController.embed(content: TransactionsListScene(viewModel: viewModel))
+            errorCancellable = viewModel.$hasError
+                .dropFirst()
+                .removeDuplicates()
+                .sink { [weak self] hasError in
+                    guard let self else { return }
+                    if hasError {
+                        router?.attachErrorToast()
+                    } else {
+                        router?.detachErrorToast()
+                    }
+                }
         }
+    }
+
+    override func willResignActive() {
+        super.willResignActive()
+        errorCancellable = nil
+    }
+
+    // MARK: TransactionsListListener
+
+    func didSelectTransaction(_ transaction: PaymentTransaction) {
+        router?.presentDetails(for: transaction)
+    }
+
+    // MARK: TransactionsDetailsListener
+
+    func transactionsDetailsDidDisappear() {
+        router?.detachDetails()
     }
 
     // MARK: Private
 
     private let component: TransactionsComponent
-    private let viewController: TransactionsViewControllable
+    private var errorCancellable: AnyCancellable?
 }

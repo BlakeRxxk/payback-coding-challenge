@@ -1,4 +1,5 @@
 import Core
+import UIKit
 
 // MARK: - TransactionsBuildable
 
@@ -8,7 +9,9 @@ public protocol TransactionsBuildable: Buildable {
 
 // MARK: - TransactionsRouting
 
-public protocol TransactionsRouting: ViewableRouting { }
+public protocol TransactionsRouting: Routing {
+    var viewControllable: ViewControllable { get }
+}
 
 // MARK: - TransactionsBuilder
 
@@ -23,8 +26,15 @@ public final class TransactionsBuilder: Builder<TransactionsComponent>, Transact
     // MARK: Public
 
     public func build() -> TransactionsRouting {
-        let viewController = TransactionsViewController()
-        let interactor = TransactionsInteractor(component: dependency, viewController: viewController)
-        return TransactionsRouter(interactor: interactor, viewController: viewController)
+        let navigationController = NavigationController()
+        let interactor = TransactionsInteractor(component: dependency)
+        let router = TransactionsRouter(
+            interactor: interactor,
+            navigationController: navigationController,
+            transactionsListBuilder: TransactionsListBuilder(dependency: dependency),
+            transactionsDetailsBuilder: TransactionsDetailsBuilder(dependency: dependency),
+            errorToastBuilder: ErrorToastBuilder(dependency: dependency))
+        interactor.router = router
+        return router
     }
 }

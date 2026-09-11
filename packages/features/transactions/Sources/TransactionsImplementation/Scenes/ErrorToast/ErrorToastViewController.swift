@@ -2,15 +2,15 @@ import Core
 import SwiftUI
 import UIKit
 
-// MARK: - TransactionsViewControllable
+// MARK: - ErrorToastViewControllable
 
-protocol TransactionsViewControllable: ViewControllable {
+protocol ErrorToastViewControllable: ViewControllable {
     func embed(content: some View)
 }
 
-// MARK: - TransactionsViewController
+// MARK: - ErrorToastViewController
 
-final class TransactionsViewController: UIViewController, TransactionsViewControllable {
+final class ErrorToastViewController: UIViewController, ErrorToastViewControllable {
 
     func embed(content: some View) {
         let hostingController = UIHostingController(rootView: content)
