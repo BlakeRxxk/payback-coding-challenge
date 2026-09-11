@@ -27,8 +27,7 @@ let package = Package(
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ],
-            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
+            ]),
         .target(
             name: "FeedImplementation",
             dependencies: [
@@ -38,14 +37,12 @@ let package = Package(
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ],
-            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
+            ]),
         .testTarget(
             name: "FeedTests",
             dependencies: ["FeedAPI"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
-            ],
-            plugins: [.plugin(name: "FormatSwift", package: "swift-style-guide")]),
+            ]),
     ]
 )

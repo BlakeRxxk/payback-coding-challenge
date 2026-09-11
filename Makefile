@@ -18,12 +18,12 @@ format:
 	@set -e; \
 	for pkg in $(PACKAGES); do \
 		echo "Formatting $$pkg"; \
-		swift package --package-path $$pkg plugin format --allow-writing-to-package-directory; \
+		swift package --package-path $$pkg plugin --allow-writing-to-package-directory format; \
 	done
 
 lint:
 	@set -e; \
 	for pkg in $(PACKAGES); do \
 		echo "Linting $$pkg"; \
-		swift package --package-path $$pkg plugin format --lint --allow-writing-to-package-directory; \
+		swift package --package-path $$pkg plugin --allow-writing-to-package-directory format --lint; \
 	done
