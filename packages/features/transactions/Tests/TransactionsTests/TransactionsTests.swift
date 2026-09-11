@@ -4,6 +4,7 @@ import XCTest
 
 // MARK: - TransactionsTests
 
+@MainActor
 final class TransactionsTests: XCTestCase {
     func testTransactionsInitialState() throws {
         let viewModel = TransactionsViewModel(transactionsService: MockTransactionService())

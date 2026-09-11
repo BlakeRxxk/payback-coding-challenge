@@ -3,7 +3,7 @@ import TransactionsAPI
 
 // MARK: - MockTransactionService
 
-class MockTransactionService: TransactionsService {
+final class MockTransactionService: TransactionsService {
     func fetchTansactions() async throws -> [PBTransaction] {
         MockTransactionService.mockData
     }
@@ -11,7 +11,7 @@ class MockTransactionService: TransactionsService {
 
 // MARK: - MockTransactionServiceWithFail
 
-class MockTransactionServiceWithFail: TransactionsService {
+final class MockTransactionServiceWithFail: TransactionsService {
     func fetchTansactions() async throws -> [PBTransaction] {
         throw NSError(domain: "error", code: 500)
     }
