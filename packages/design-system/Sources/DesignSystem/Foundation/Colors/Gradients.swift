@@ -2,7 +2,7 @@ import SwiftUI
 
 extension EllipticalGradient {
     /// Colors used for different primary button states
-    public static let gradient1: EllipticalGradient = .init(
+    public static let gradient1 = EllipticalGradient(
         stops: [
             Gradient.Stop(color: Color(red: 0.92, green: 0.3, blue: 0.38), location: 0.00),
             Gradient.Stop(color: Color(red: 0.92, green: 0.3, blue: 0.38), location: 0.48),

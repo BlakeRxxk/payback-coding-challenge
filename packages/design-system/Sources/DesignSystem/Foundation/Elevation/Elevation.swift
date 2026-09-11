@@ -31,5 +31,5 @@ public struct Elevation: ViewModifier {
 
     // MARK: Internal
 
-    internal var style: Style
+    var style: Style
 }

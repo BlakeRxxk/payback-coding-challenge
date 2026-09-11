@@ -51,13 +51,12 @@ struct TransactionsList: View {
 
     // MARK: Private
 
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+
+    @State private var selectedTransaction: PaymentTransaction? = nil
+
     private let viewModel: TransactionsList.ViewModel
 
-    @Environment(\.presentationMode)
-    private var presentationMode: Binding<PresentationMode>
-
-    @State
-    private var selectedTransaction: PaymentTransaction? = nil
 }
 
 // MARK: TransactionsList.Localized

@@ -5,8 +5,10 @@ extension Effects {
 
         // MARK: Lifecycle
 
-        public init(priority: TaskPriority? = nil,
-                    operation: @Sendable @escaping () async -> Element) {
+        public init(
+            priority: TaskPriority? = nil,
+            operation: @Sendable @escaping () async -> Element)
+        {
             self.priority = priority
             self.operation = operation
         }

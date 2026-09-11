@@ -26,5 +26,4 @@ let package = Package(
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
             ]),
-    ]
-)
+    ])

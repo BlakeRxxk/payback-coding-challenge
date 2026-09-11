@@ -1,5 +1,5 @@
-import NetworkingAPI
 import Core
+import NetworkingAPI
 import SwiftUI
 import TransactionsAPI
 

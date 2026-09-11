@@ -1,5 +1,5 @@
-import Foundation
 import Core
+import Foundation
 import TransactionsAPI
 
 // MARK: - TransactionDetail.ViewModel

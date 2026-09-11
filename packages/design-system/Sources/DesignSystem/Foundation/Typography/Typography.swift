@@ -3,34 +3,40 @@ import SwiftUI
 // MARK: - Typography
 
 public struct Typography: ViewModifier {
-    
+
+    // MARK: Lifecycle
+
+    public init(style: Style) {
+        self.style = style
+    }
+
     // MARK: Public
-    
+
     public enum Style {
         case headerRegular
         case headerSemibold
-        
+
         case body18Regular
         case body18Medium
         case body18Semibold
-        
+
         case body16Regular
         case body16Medium
         case body16Semibold
-        
+
         case body14Regular
         case body14Semibold
-        
+
         case body13Regular
         case body13Semibold
-        
+
         case body12Regular
         case body12Medium
         case body12Semibold
-        
+
         case micro
     }
-    
+
     public func body(content: Content) -> some View {
         switch style {
         case .headerRegular: return content.font(Font.system(size: 22, weight: .regular))
@@ -51,12 +57,8 @@ public struct Typography: ViewModifier {
         case .micro: return content.font(Font.system(size: 10, weight: .semibold))
         }
     }
-    
-    public init(style: Style) {
-        self.style = style
-    }
-    
+
     // MARK: Internal
-    
-    internal var style: Style
+
+    var style: Style
 }

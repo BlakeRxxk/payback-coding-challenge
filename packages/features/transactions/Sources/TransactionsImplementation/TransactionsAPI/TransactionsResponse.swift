@@ -7,6 +7,6 @@ public struct TransactionsResponse {
     public let items: [PaymentTransaction]
 }
 
-// MARK: Codable, Hashable
+// MARK: Codable, Hashable, Sendable
 
 extension TransactionsResponse: Codable, Hashable, Sendable { }

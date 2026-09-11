@@ -15,10 +15,12 @@ public final class HTTPClient: HTTPClientProtocol {
 
     // MARK: Public
 
-    public func request<T: Decodable>(_ method: HTTPMethod,
-                                      _ route: Routable,
-                                      parameters: [String: Any]? = nil)
-        async throws -> T {
+    public func request<T: Decodable>(
+        _ method: HTTPMethod,
+        _ route: Routable,
+        parameters: [String: Any]? = nil)
+        async throws -> T
+    {
         let request = urlRequest(method: method, route: route, parameters: parameters)
         let (data, response) = try await session.data(for: request)
 
@@ -30,8 +32,7 @@ public final class HTTPClient: HTTPClientProtocol {
         }
 
         do {
-            let responseObject = try decoder.decode(T.self, from: data)
-            return responseObject
+            return try decoder.decode(T.self, from: data)
         } catch {
             Logger.decoding.error("\(error)")
             throw error

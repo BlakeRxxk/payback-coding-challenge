@@ -9,7 +9,7 @@ struct TransactionsListScene: View {
     // MARK: Lifecycle
 
     init(viewModel: TransactionsViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: Internal
@@ -18,13 +18,16 @@ struct TransactionsListScene: View {
         Group {
             switch viewModel.state {
             case .idle: EmptyList(viewModel: .init(title: ""))
+
             case .loading: LoadingList()
+
             case .transactions(let items):
                 TransactionsList(
                     viewModel:
                     .init(
                         emptyState: Localized.emptyMessage,
                         transactions: items), isFiltered: $viewModel.isFiltered)
+
             case .error:
                 EmptyList(viewModel: .init(title: ""))
             }
@@ -40,9 +43,10 @@ struct TransactionsListScene: View {
             ToolbarItem {
                 CategoryMenu(
                     viewModel: .init(categories: viewModel.categories),
-                    selectedCategory: $viewModel.selectedCategory) {
-                        viewModel.select(category: $0)
-                    }
+                    selectedCategory: $viewModel.selectedCategory)
+                {
+                    viewModel.select(category: $0)
+                }
             }
         }
         .tint(Color.Accents.accent2)
@@ -60,8 +64,7 @@ struct TransactionsListScene: View {
 
     // MARK: Private
 
-    @StateObject
-    private var viewModel: TransactionsViewModel
+    @StateObject private var viewModel: TransactionsViewModel
 }
 
 // MARK: TransactionsListScene.Localized

@@ -39,13 +39,15 @@ public struct EllipsesLoader: View {
         .onAppear {
             withAnimation(
                 .easeInOut(duration: 1)
-                    .repeatForever(autoreverses: false)) {
+                    .repeatForever(autoreverses: false))
+            {
                 scale = 1.2
             }
 
             withAnimation(
                 .easeInOut(duration: 2.0)
-                    .repeatForever(autoreverses: true)) {
+                    .repeatForever(autoreverses: true))
+            {
                 colorIndex = (colorIndex + 1) % colors.count
             }
         }

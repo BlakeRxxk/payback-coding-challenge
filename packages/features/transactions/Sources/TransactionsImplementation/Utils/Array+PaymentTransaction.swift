@@ -2,7 +2,7 @@ import Core
 import TransactionsAPI
 
 extension [PaymentTransaction] {
-    
+
     /// Fuzzy matching by partnerDisplayName
     /// - Parameter text: search string
     /// - Returns:  Filtered array of PaymentTransaction if search text not empty
@@ -15,7 +15,7 @@ extension [PaymentTransaction] {
             FuzzyMatching.search(for: text, in: $0.partnerDisplayName)
         }
     }
-    
+
     /// Filter array by category
     /// - Parameter category: selected category
     /// - Returns: Filtered array of PaymentTransaction if category not nil

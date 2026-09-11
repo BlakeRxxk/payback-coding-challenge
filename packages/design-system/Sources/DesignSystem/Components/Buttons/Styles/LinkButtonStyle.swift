@@ -28,8 +28,10 @@ extension LinkButtonStyle {
 
         // MARK: Lifecycle
 
-        internal init(configuration: ButtonStyle.Configuration,
-                      foreground: ColorConfiguration) {
+        init(
+            configuration: ButtonStyle.Configuration,
+            foreground: ColorConfiguration)
+        {
             self.configuration = configuration
             self.foreground = foreground
         }
@@ -54,8 +56,9 @@ extension LinkButtonStyle {
 
         // MARK: Private
 
+        @Environment(\.isEnabled) private var isEnabled: Bool
+
         private var foreground: ColorConfiguration
 
-        @Environment(\.isEnabled) private var isEnabled: Bool
     }
 }

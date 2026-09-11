@@ -20,13 +20,13 @@ public struct OverlayModifier<T: View>: ViewModifier {
                         .offset(y: isPresented ? 0 : 120)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
-                
             }
         }
     }
 
     // MARK: Private
 
-    private let block: (Content) -> T
     @Binding private var isPresented: Bool
+
+    private let block: (Content) -> T
 }
