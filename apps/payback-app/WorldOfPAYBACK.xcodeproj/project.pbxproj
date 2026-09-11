@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA2C8CCB2AD469F9006A2968 /* WorldOfPAYBACKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C8CCA2AD469F9006A2968 /* WorldOfPAYBACKApp.swift */; };
+		FECAFECAFECAFECA000000B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECAFECAFECAFECA000000B1 /* AppDelegate.swift */; };
+		FECAFECAFECAFECA000000B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECAFECAFECAFECA000000B3 /* SceneDelegate.swift */; };
 		AA2C8CCD2AD469F9006A2968 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C8CCC2AD469F9006A2968 /* RootView.swift */; };
 		AA2C8CCF2AD469FB006A2968 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2C8CCE2AD469FB006A2968 /* Assets.xcassets */; };
 		AA2C8CD22AD469FB006A2968 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2C8CD12AD469FB006A2968 /* Preview Assets.xcassets */; };
@@ -46,7 +47,8 @@
 
 /* Begin PBXFileReference section */
 		AA2C8CC72AD469F9006A2968 /* WorldOfPAYBACK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldOfPAYBACK.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA2C8CCA2AD469F9006A2968 /* WorldOfPAYBACKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOfPAYBACKApp.swift; sourceTree = "<group>"; };
+		FECAFECAFECAFECA000000B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FECAFECAFECAFECA000000B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AA2C8CCC2AD469F9006A2968 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		AA2C8CCE2AD469FB006A2968 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA2C8CD12AD469FB006A2968 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -173,8 +175,9 @@
 		AA6319F82ADC2F6400F810F3 /* AppStart */ = {
 			isa = PBXGroup;
 			children = (
+				FECAFECAFECAFECA000000B1 /* AppDelegate.swift */,
+				FECAFECAFECAFECA000000B3 /* SceneDelegate.swift */,
 				AA2C8CFC2AD6D881006A2968 /* AppComponent.swift */,
-				AA2C8CCA2AD469F9006A2968 /* WorldOfPAYBACKApp.swift */,
 			);
 			path = AppStart;
 			sourceTree = "<group>";
@@ -344,8 +347,9 @@
 				AA631A002ADC305700F810F3 /* RootComponent+Transactions.swift in Sources */,
 				AA2C8CCD2AD469F9006A2968 /* RootView.swift in Sources */,
 				AA6319F72ADC2F0500F810F3 /* RootComponent.swift in Sources */,
+				FECAFECAFECAFECA000000B4 /* SceneDelegate.swift in Sources */,
+				FECAFECAFECAFECA000000B2 /* AppDelegate.swift in Sources */,
 				AA2C8CFD2AD6D881006A2968 /* AppComponent.swift in Sources */,
-				AA2C8CCB2AD469F9006A2968 /* WorldOfPAYBACKApp.swift in Sources */,
 				AA6319FE2ADC304000F810F3 /* RootComponent+Feed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
