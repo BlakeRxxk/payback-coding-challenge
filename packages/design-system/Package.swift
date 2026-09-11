@@ -16,9 +16,15 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "DesignSystem"),
+            name: "DesignSystem",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
         .testTarget(
             name: "DesignSystemTests",
-            dependencies: ["DesignSystem"]),
+            dependencies: ["DesignSystem"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
     ]
 )

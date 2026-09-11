@@ -16,9 +16,15 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Core"),
+            name: "Core",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
         .testTarget(
             name: "CoreTests",
-            dependencies: ["Core"]),
+            dependencies: ["Core"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
     ]
 )
