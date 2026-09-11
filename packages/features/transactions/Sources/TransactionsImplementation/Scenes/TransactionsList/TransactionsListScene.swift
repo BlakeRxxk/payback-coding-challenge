@@ -1,6 +1,7 @@
 import Core
 import DesignSystem
 import SwiftUI
+import TransactionsAPI
 
 // MARK: - TransactionsListScene
 
@@ -8,8 +9,9 @@ struct TransactionsListScene: View {
 
     // MARK: Lifecycle
 
-    init(viewModel: TransactionsViewModel) {
+    init(viewModel: TransactionsViewModel, onSelect: @escaping (PaymentTransaction) -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.onSelect = onSelect
     }
 
     // MARK: Internal
@@ -26,17 +28,14 @@ struct TransactionsListScene: View {
                     viewModel:
                     .init(
                         emptyState: Localized.emptyMessage,
-                        transactions: items), isFiltered: $viewModel.isFiltered)
+                        transactions: items),
+                    isFiltered: $viewModel.isFiltered)
+                { transaction in
+                    onSelect(transaction)
+                }
 
             case .error:
                 EmptyList(viewModel: .init(title: ""))
-            }
-        }
-        .overlay(isPresented: $viewModel.hasError) {
-            Toast(viewModel: .init(title: "Error", description: "Something went wrong", actionTitle: "Retry")) {
-                Task {
-                    await viewModel.fetchTransactions()
-                }
             }
         }
         .toolbar {
@@ -52,9 +51,6 @@ struct TransactionsListScene: View {
         .tint(Color.Accents.accent2)
         .navigationTitle(Localized.title)
         .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
-        .task {
-            await viewModel.fetchTransactions()
-        }
         .refreshable {
             Task {
                 await viewModel.refreshTransactions()
@@ -65,6 +61,8 @@ struct TransactionsListScene: View {
     // MARK: Private
 
     @StateObject private var viewModel: TransactionsViewModel
+
+    private let onSelect: (PaymentTransaction) -> Void
 }
 
 // MARK: TransactionsListScene.Localized

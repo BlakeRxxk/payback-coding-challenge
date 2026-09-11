@@ -1,5 +1,8 @@
-import Foundation
 import Core
+import FeedAPI
+import FeedImplementation
+import Foundation
+import NeedleFoundation
 import NetworkingAPI
 import NetworkingImplementation
 import TransactionsAPI
@@ -7,12 +10,10 @@ import TransactionsImplementation
 
 private let kRequestTimeout = 20.0
 
-class AppComponent: Component<EmptyDependency>, RootDependency, @unchecked Sendable {
+final class AppComponent: NeedleFoundation.BootstrapComponent, TransactionsDependency, FeedDependency, @unchecked Sendable {
 
-    init() {
-        super.init(dependency: EmptyComponent())
-    }
-    
+    // MARK: Internal
+
     var networkClient: HTTPClientProtocol {
         shared {
             let configuration = URLSessionConfiguration.ephemeral
@@ -26,8 +27,21 @@ class AppComponent: Component<EmptyDependency>, RootDependency, @unchecked Senda
         }
     }
 
-    var rootComponent: RootComponent {
-        RootComponent(dependency: self)
+    public var transactionsService: TransactionsService {
+        shared {
+            TransactionsServiceImplementation(networkClient: networkClient)
+        }
+    }
+
+    var transactionsComponent: TransactionsComponent {
+        shared {
+            TransactionsComponent(parent: self)
+        }
+    }
+
+    var feedComponent: FeedComponent {
+        shared {
+            FeedComponent(parent: self)
+        }
     }
 }
-

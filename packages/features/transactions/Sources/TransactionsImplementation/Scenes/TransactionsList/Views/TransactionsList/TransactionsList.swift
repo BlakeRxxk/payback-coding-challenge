@@ -8,8 +8,9 @@ struct TransactionsList: View {
 
     // MARK: Lifecycle
 
-    init(viewModel: TransactionsList.ViewModel, isFiltered: Binding<Bool>) {
+    init(viewModel: TransactionsList.ViewModel, isFiltered: Binding<Bool>, onSelect: @escaping (PaymentTransaction) -> Void) {
         self.viewModel = viewModel
+        self.onSelect = onSelect
         _isFiltered = isFiltered
     }
 
@@ -26,14 +27,9 @@ struct TransactionsList: View {
                     LazyVGrid(columns: [GridItem(.fixed(UIScreen.main.bounds.width))], content: {
                         ForEach(viewModel.transactions) { transaction in
                             Button(action: {
-                                selectedTransaction = transaction
+                                onSelect(transaction)
                             }, label: {
                                 TransactionRowItem(model: .init(from: transaction))
-                            })
-                            .sheet(item: $selectedTransaction, onDismiss: {
-                                selectedTransaction = nil
-                            }, content: {
-                                TransactionDetail(viewModel: .init(from: $0))
                             })
                         }
                     })
@@ -51,12 +47,8 @@ struct TransactionsList: View {
 
     // MARK: Private
 
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-
-    @State private var selectedTransaction: PaymentTransaction? = nil
-
     private let viewModel: TransactionsList.ViewModel
-
+    private let onSelect: (PaymentTransaction) -> Void
 }
 
 // MARK: TransactionsList.Localized
