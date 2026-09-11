@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		FECAFECAFECAFECA000000B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECAFECAFECAFECA000000B1 /* AppDelegate.swift */; };
 		FECAFECAFECAFECA000000B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECAFECAFECAFECA000000B3 /* SceneDelegate.swift */; };
+		D1500000000000000000B102 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1500000000000000000B101 /* RootBuilder.swift */; };
+		D1500000000000000000B112 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1500000000000000000B111 /* RootRouter.swift */; };
+		D1500000000000000000B122 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1500000000000000000B121 /* RootInteractor.swift */; };
+		D1500000000000000000B132 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1500000000000000000B131 /* RootViewController.swift */; };
+		D1500000000000000000B142 /* needle-generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1500000000000000000B141 /* needle-generated.swift */; };
 		AA2C8CCD2AD469F9006A2968 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C8CCC2AD469F9006A2968 /* RootView.swift */; };
 		AA2C8CCF2AD469FB006A2968 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2C8CCE2AD469FB006A2968 /* Assets.xcassets */; };
 		AA2C8CD22AD469FB006A2968 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2C8CD12AD469FB006A2968 /* Preview Assets.xcassets */; };
@@ -26,6 +31,7 @@
 		AA6319FC2ADC300200F810F3 /* FeedImplementation in Frameworks */ = {isa = PBXBuildFile; productRef = AA6319FB2ADC300200F810F3 /* FeedImplementation */; };
 		AA6319FE2ADC304000F810F3 /* RootComponent+Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6319FD2ADC304000F810F3 /* RootComponent+Feed.swift */; };
 		AA631A002ADC305700F810F3 /* RootComponent+Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6319FF2ADC305700F810F3 /* RootComponent+Transactions.swift */; };
+		D1500000000000000000A212 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = D1500000000000000000A211 /* NeedleFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,11 @@
 		AA6319F62ADC2F0500F810F3 /* RootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComponent.swift; sourceTree = "<group>"; };
 		AA6319FD2ADC304000F810F3 /* RootComponent+Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Feed.swift"; sourceTree = "<group>"; };
 		AA6319FF2ADC305700F810F3 /* RootComponent+Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Transactions.swift"; sourceTree = "<group>"; };
+		D1500000000000000000B101 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
+		D1500000000000000000B111 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+		D1500000000000000000B121 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
+		D1500000000000000000B131 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		D1500000000000000000B141 /* needle-generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "needle-generated.swift"; sourceTree = "<group>"; };
 		AAC664622B12471F00BDD247 /* TransactionsImplementation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TransactionsImplementation.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +87,7 @@
 				AA6319FA2ADC300200F810F3 /* FeedAPI in Frameworks */,
 				AA2C8D022AD6DAAA006A2968 /* Core in Frameworks */,
 				AA6319F32ADC1E8900F810F3 /* TransactionsImplementation in Frameworks */,
+				D1500000000000000000A212 /* NeedleFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +173,10 @@
 				AA6319F62ADC2F0500F810F3 /* RootComponent.swift */,
 				AA6319FD2ADC304000F810F3 /* RootComponent+Feed.swift */,
 				AA6319FF2ADC305700F810F3 /* RootComponent+Transactions.swift */,
+				D1500000000000000000B101 /* RootBuilder.swift */,
+				D1500000000000000000B111 /* RootRouter.swift */,
+				D1500000000000000000B121 /* RootInteractor.swift */,
+				D1500000000000000000B131 /* RootViewController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -178,6 +194,7 @@
 				FECAFECAFECAFECA000000B1 /* AppDelegate.swift */,
 				FECAFECAFECAFECA000000B3 /* SceneDelegate.swift */,
 				AA2C8CFC2AD6D881006A2968 /* AppComponent.swift */,
+				D1500000000000000000B141 /* needle-generated.swift */,
 			);
 			path = AppStart;
 			sourceTree = "<group>";
@@ -222,6 +239,7 @@
 				AA6319F22ADC1E8900F810F3 /* TransactionsImplementation */,
 				AA6319F92ADC300200F810F3 /* FeedAPI */,
 				AA6319FB2ADC300200F810F3 /* FeedImplementation */,
+				D1500000000000000000A211 /* NeedleFoundation */,
 			);
 			productName = WorldOfPAYBACK;
 			productReference = AA2C8CC72AD469F9006A2968 /* WorldOfPAYBACK.app */;
@@ -301,6 +319,7 @@
 				CAFECAFECAFECAFE000000A3 /* XCLocalSwiftPackageReference "../../packages/networking" */,
 				CAFECAFECAFECAFE000000A4 /* XCLocalSwiftPackageReference "../../packages/features/transactions" */,
 				CAFECAFECAFECAFE000000A5 /* XCLocalSwiftPackageReference "../../packages/features/feed" */,
+				D1500000000000000000A201 /* XCRemoteSwiftPackageReference "needle" */,
 			);
 			productRefGroup = AA2C8CC82AD469F9006A2968 /* Products */;
 			projectDirPath = "";
@@ -351,6 +370,11 @@
 				FECAFECAFECAFECA000000B2 /* AppDelegate.swift in Sources */,
 				AA2C8CFD2AD6D881006A2968 /* AppComponent.swift in Sources */,
 				AA6319FE2ADC304000F810F3 /* RootComponent+Feed.swift in Sources */,
+				D1500000000000000000B102 /* RootBuilder.swift in Sources */,
+				D1500000000000000000B112 /* RootRouter.swift in Sources */,
+				D1500000000000000000B122 /* RootInteractor.swift in Sources */,
+				D1500000000000000000B132 /* RootViewController.swift in Sources */,
+				D1500000000000000000B142 /* needle-generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +736,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		D1500000000000000000A201 /* XCRemoteSwiftPackageReference "needle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uber/needle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		AA2C8CFF2AD6DAAA006A2968 /* NetworkingAPI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -747,6 +782,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CAFECAFECAFECAFE000000A5 /* XCLocalSwiftPackageReference "../../packages/features/feed" */;
 			productName = FeedImplementation;
+		};
+		D1500000000000000000A211 /* NeedleFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1500000000000000000A201 /* XCRemoteSwiftPackageReference "needle" */;
+			productName = NeedleFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
