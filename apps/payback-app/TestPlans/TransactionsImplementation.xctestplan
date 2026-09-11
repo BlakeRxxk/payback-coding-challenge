@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "77FEE06E-ABC8-4855-9017-A69260CD4773",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..\/..\/packages\/features\/transactions",
+        "identifier" : "TransactionsTests",
+        "name" : "TransactionsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
