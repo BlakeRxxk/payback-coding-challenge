@@ -15,9 +15,9 @@ enum TransactionsRoute {
     case all
 }
 
-// MARK: Routable
+// MARK: Routable, Sendable
 
-extension TransactionsRoute: Routable {
+extension TransactionsRoute: Routable, Sendable {
     var url: URL {
         let path = switch self {
         case .all: "/transactions"

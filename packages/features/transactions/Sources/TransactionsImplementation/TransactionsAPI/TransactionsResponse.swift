@@ -9,4 +9,4 @@ public struct TransactionsResponse {
 
 // MARK: Codable, Hashable
 
-extension TransactionsResponse: Codable, Hashable { }
+extension TransactionsResponse: Codable, Hashable, Sendable { }

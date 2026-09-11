@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - ResponseType
 
-public enum ResponseType {
+public enum ResponseType: Sendable {
     case succeed
     case badRequest
     case unauthorized

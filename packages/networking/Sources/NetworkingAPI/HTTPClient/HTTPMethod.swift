@@ -1,6 +1,6 @@
 import Foundation
 
-public enum HTTPMethod: String {
+public enum HTTPMethod: String, Sendable {
     case options
     case get
     case head
