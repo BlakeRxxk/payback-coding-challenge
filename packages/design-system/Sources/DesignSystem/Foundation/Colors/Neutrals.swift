@@ -3,13 +3,13 @@ import SwiftUI
 extension Color {
     /// Colors used for backgrounds, text, dividers, etc.
     public enum Neutrals {
-        public static let neutral1 = Color(red: 0.97, green: 0.97, blue: 0.97)
-        public static let neutral2 = Color(red: 0.92, green: 0.92, blue: 0.92)
-        public static let neutral3 = Color(red: 0.87, green: 0.87, blue: 0.87)
-        public static let neutral4 = Color(red: 0.83, green: 0.83, blue: 0.83)
-        public static let neutral5 = Color(red: 0.76, green: 0.76, blue: 0.76)
-        public static let neutral6 = Color(red: 0.69, green: 0.69, blue: 0.69)
-        public static let neutral7 = Color(red: 0.44, green: 0.44, blue: 0.44)
-        public static let neutral8 = Color(red: 0.37, green: 0.37, blue: 0.37)
+        public static let neutral1 = Color(red: 0.969, green: 0.969, blue: 0.969)
+        public static let neutral2 = Color(red: 0.922, green: 0.922, blue: 0.922)
+        public static let neutral3 = Color(red: 0.867, green: 0.867, blue: 0.867)
+        public static let neutral4 = Color(red: 0.827, green: 0.827, blue: 0.827)
+        public static let neutral5 = Color(red: 0.761, green: 0.761, blue: 0.761)
+        public static let neutral6 = Color(red: 0.690, green: 0.690, blue: 0.690)
+        public static let neutral7 = Color(red: 0.443, green: 0.443, blue: 0.443)
+        public static let neutral8 = Color(red: 0.369, green: 0.369, blue: 0.369)
     }
 }
