@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Component
 
-open class Component<DependencyType>: Dependency {
+open class Component<DependencyType>: Dependency, @unchecked Sendable {
 
     // MARK: Lifecycle
 
@@ -37,6 +37,6 @@ open class Component<DependencyType>: Dependency {
 
 // MARK: - EmptyComponent
 
-open class EmptyComponent: EmptyDependency {
+open class EmptyComponent: EmptyDependency, @unchecked Sendable {
     public init() { }
 }

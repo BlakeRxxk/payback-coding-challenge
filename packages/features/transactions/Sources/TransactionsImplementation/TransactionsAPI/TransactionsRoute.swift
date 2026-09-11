@@ -5,19 +5,19 @@ import NetworkingAPI
 
 enum TransactionsRoute {
     #if DEBUG
-    static var baseURL = URL(staticString: "http://localhost:3000")
+    static let baseURL = URL(staticString: "http://localhost:3000")
     // using local server for dev
-    // static var baseURL = URL(staticString: "https://api-test.payback.com")
+    // static let baseURL = URL(staticString: "https://api-test.payback.com")
     #elseif RELEASE
-    static var baseURL = URL(staticString: "https://api.payback.com")
+    static let baseURL = URL(staticString: "https://api.payback.com")
     #endif
 
     case all
 }
 
-// MARK: Routable
+// MARK: Routable, Sendable
 
-extension TransactionsRoute: Routable {
+extension TransactionsRoute: Routable, Sendable {
     var url: URL {
         let path = switch self {
         case .all: "/transactions"

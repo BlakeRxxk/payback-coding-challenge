@@ -21,7 +21,10 @@ let package = Package(
         .package(name: "DesignSystem", path: "../../design-system"),
     ],
     targets: [
-        .target(name: "TransactionsAPI", dependencies: []),
+        .target(name: "TransactionsAPI", dependencies: [],
+                swiftSettings: [
+                    .enableExperimentalFeature("StrictConcurrency"),
+                ]),
         .target(
             name: "TransactionsImplementation",
             dependencies: [
@@ -32,11 +35,15 @@ let package = Package(
             ],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug)),
-                .define("RELEASE", .when(configuration: .release))
+                .define("RELEASE", .when(configuration: .release)),
+                .enableExperimentalFeature("StrictConcurrency"),
             ]
         ),
         .testTarget(
             name: "TransactionsTests",
-            dependencies: ["TransactionsImplementation"]),
+            dependencies: ["TransactionsImplementation"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
     ]
 )

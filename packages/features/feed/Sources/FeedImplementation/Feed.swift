@@ -10,7 +10,7 @@ public protocol FeedDependency: Dependency {
 
 // MARK: - FeedComponent
 
-public final class FeedComponent: Component<FeedDependency>, Viewable {
+public final class FeedComponent: Component<FeedDependency>, Viewable, @unchecked Sendable {
 
     // MARK: Public
 

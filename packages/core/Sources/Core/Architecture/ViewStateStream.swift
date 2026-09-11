@@ -49,7 +49,8 @@ public final class ViewStateStream<State>: AsyncSequence where State: Sendable &
         if let last {
             continuation.yield(last)
         }
-        return stream.map { $0[keyPath: keyPath] }
+        let sendableKeyPath = SendableKeyPath(keyPath)
+        return stream.map { $0[keyPath: sendableKeyPath.keyPath] }
     }
 
     // MARK: Internal
@@ -69,6 +70,16 @@ public final class ViewStateStream<State>: AsyncSequence where State: Sendable &
     private var continuations: [AsyncStream<Element>.Continuation] = []
     private var last: Element?
 
+}
+
+// MARK: - SendableKeyPath
+
+private struct SendableKeyPath<Root, Value>: @unchecked Sendable {
+    let keyPath: KeyPath<Root, Value>
+
+    init(_ keyPath: KeyPath<Root, Value>) {
+        self.keyPath = keyPath
+    }
 }
 
 // MARK: Sendable

@@ -69,5 +69,7 @@ extension Logger {
 
     // MARK: Private
 
-    private static var subsystem = Bundle.main.bundleIdentifier!
+    private static var subsystem: String {
+        Bundle.main.bundleIdentifier!
+    }
 }

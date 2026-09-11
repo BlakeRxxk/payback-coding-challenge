@@ -1,7 +1,7 @@
 import Foundation
 import NetworkingAPI
 
-public struct APIError: Error {
+public struct APIError: Error, Sendable {
 
     // MARK: Lifecycle
 

@@ -24,6 +24,9 @@ let package = Package(
             name: "FeedAPI",
             dependencies: [
                 .product(name: "TransactionsAPI", package: "Transactions"),
+            ],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
             ]),
         .target(
             name: "FeedImplementation",
@@ -31,9 +34,15 @@ let package = Package(
                 "FeedAPI",
                 .product(name: "TransactionsAPI", package: "Transactions"),
                 .product(name: "Core", package: "Core"),
+            ],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
             ]),
         .testTarget(
             name: "FeedTests",
-            dependencies: ["FeedAPI"]),
+            dependencies: ["FeedAPI"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
     ]
 )

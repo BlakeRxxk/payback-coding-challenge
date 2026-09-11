@@ -21,7 +21,7 @@ final class ComponentTests: XCTestCase {
 
 // MARK: - DependencyMock
 
-class DependencyMock: Dependency { }
+final class DependencyMock: Dependency { }
 
 // MARK: - MyComponentType
 

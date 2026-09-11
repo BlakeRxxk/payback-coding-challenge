@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol HTTPClientProtocol {
+public protocol HTTPClientProtocol: Sendable {
     init(configuration: URLSessionConfiguration, decoder: JSONDecoder)
 
     func request<T: Decodable>(_ method: HTTPMethod,

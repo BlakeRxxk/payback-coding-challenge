@@ -2,6 +2,6 @@
 
 import TransactionsAPI
 
-public protocol FeedService {
+public protocol FeedService: Sendable {
     func fetchFeed() async throws -> [PBTransaction]
 }

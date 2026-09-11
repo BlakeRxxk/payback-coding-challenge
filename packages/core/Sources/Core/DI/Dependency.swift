@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Dependency
 
-public protocol Dependency: AnyObject { }
+public protocol Dependency: AnyObject, Sendable { }
 
 // MARK: - EmptyDependency
 

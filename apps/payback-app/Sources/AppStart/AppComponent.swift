@@ -7,7 +7,7 @@ import TransactionsImplementation
 
 private let kRequestTimeout = 20.0
 
-class AppComponent: Component<EmptyDependency>, RootDependency {
+class AppComponent: Component<EmptyDependency>, RootDependency, @unchecked Sendable {
 
     init() {
         super.init(dependency: EmptyComponent())

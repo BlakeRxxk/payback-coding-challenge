@@ -18,10 +18,19 @@ let package = Package(
         .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main")
     ],
     targets: [
-        .target(name: "NetworkingAPI", dependencies: []),
-        .target(name: "NetworkingImplementation", dependencies: ["NetworkingAPI"]),
+        .target(name: "NetworkingAPI", dependencies: [],
+                swiftSettings: [
+                    .enableExperimentalFeature("StrictConcurrency"),
+                ]),
+        .target(name: "NetworkingImplementation", dependencies: ["NetworkingAPI"],
+                swiftSettings: [
+                    .enableExperimentalFeature("StrictConcurrency"),
+                ]),
         .testTarget(
             name: "NetworkingAPITests",
-            dependencies: ["NetworkingAPI"]),
+            dependencies: ["NetworkingAPI"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
     ]
 )

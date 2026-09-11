@@ -5,6 +5,7 @@ import TransactionsAPI
 
 // MARK: - TransactionsViewModel
 
+@MainActor
 final class TransactionsViewModel: ObservableObject {
 
     // MARK: Lifecycle
@@ -15,7 +16,7 @@ final class TransactionsViewModel: ObservableObject {
 
     // MARK: Internal
 
-    enum State: Equatable {
+    enum State: Equatable, Sendable {
         case idle
         case loading
         case transactions([PBTransaction])
