@@ -50,6 +50,7 @@ struct TransactionsListScene: View {
         }
         .tint(Color.Accents.accent2)
         .navigationTitle(Localized.title)
+        .navigationBarTitleDisplayMode(.large)
         .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
         .refreshable {
             Task {

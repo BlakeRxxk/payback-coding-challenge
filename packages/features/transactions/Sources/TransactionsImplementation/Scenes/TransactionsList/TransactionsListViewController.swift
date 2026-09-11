@@ -14,6 +14,16 @@ final class TransactionsListViewController: UIViewController, TransactionsListVi
 
     func embed(content: some View) {
         let hostingController = UIHostingController(rootView: content)
+
+        if let navigationController {
+            // SwiftUI navigation-bar modifiers (.navigationTitle, .searchable,
+            // .toolbar) only bridge to a UINavigationController when the hosting
+            // controller is a direct child of the navigation stack. Embedding it
+            // as a child of this wrapper controller silently drops them.
+            navigationController.viewControllers = [hostingController]
+            return
+        }
+
         addChild(hostingController)
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hostingController.view)
