@@ -3,4 +3,12 @@ import UIKit
 
 // MARK: - NavigationController
 
-final class NavigationController: UINavigationController, ViewControllable { }
+final class NavigationController: UINavigationController, ViewControllable {
+
+    // MARK: UIViewController
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationBar.prefersLargeTitles = true
+    }
+}
