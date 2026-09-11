@@ -1,8 +1,8 @@
 import Foundation
 
-// MARK: - PBTransaction.Detail
+// MARK: - PaymentTransaction.Detail
 
-extension PBTransaction {
+extension PaymentTransaction {
     public struct Detail {
         public let description: String?
         public let bookingDate: Date
@@ -16,6 +16,6 @@ extension PBTransaction {
     }
 }
 
-// MARK: - PBTransaction.Detail + Codable, Hashable, Sendable
+// MARK: - PaymentTransaction.Detail + Codable, Hashable, Sendable
 
-extension PBTransaction.Detail: Codable, Hashable, Sendable { }
+extension PaymentTransaction.Detail: Codable, Hashable, Sendable { }
