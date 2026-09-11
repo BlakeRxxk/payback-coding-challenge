@@ -14,7 +14,7 @@ public protocol RootDependency: Dependency {
 
 // MARK: - RootComponent
 
-class RootComponent: Component<RootDependency> {
+class RootComponent: Component<RootDependency>, @unchecked Sendable {
     
     // MARK: Internal
     
