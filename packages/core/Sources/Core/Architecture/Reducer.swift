@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Reducer
 
-public protocol Reducer<Action, State> {
+public protocol Reducer<Action, State>: Sendable {
     associatedtype Action
     associatedtype State: Equatable
 

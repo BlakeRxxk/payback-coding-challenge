@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Routable {
+public protocol Routable: Sendable {
     var url: URL { get }
     var extraHTTPHeaders: [String: String] { get }
 }
