@@ -1,11 +1,7 @@
 .PHONY : kill_xcode mock_server format lint
 
-PACKAGES = \
-	packages/core \
-	packages/networking \
-	packages/design-system \
-	packages/features/transactions \
-	packages/features/feed
+PACKAGES := $(shell find packages -name Package.swift -not -path "*/.*" -not -path "*/.build/*" -exec dirname {} \; | sort)
+JOBS ?= $(shell sysctl -n hw.ncpu)
 
 mock_server:
 	python3 tools/mock-server/server.py
@@ -15,15 +11,9 @@ kill_xcode:
 	killall Simulator || true
 
 format:
-	@set -e; \
-	for pkg in $(PACKAGES); do \
-		echo "Formatting $$pkg"; \
-		swift package --package-path $$pkg plugin --allow-writing-to-package-directory format; \
-	done
+	@printf '%s\n' $(PACKAGES) | xargs -P $(JOBS) -I {} sh -c \
+		'echo "Formatting {}" && swift package --package-path {} plugin --allow-writing-to-package-directory format'
 
 lint:
-	@set -e; \
-	for pkg in $(PACKAGES); do \
-		echo "Linting $$pkg"; \
-		swift package --package-path $$pkg plugin --allow-writing-to-package-directory format --lint; \
-	done
+	@printf '%s\n' $(PACKAGES) | xargs -P $(JOBS) -I {} sh -c \
+		'echo "Linting {}" && swift package --package-path {} plugin --allow-writing-to-package-directory format --lint'
