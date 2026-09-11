@@ -5,8 +5,10 @@ extension Effects {
 
         // MARK: Lifecycle
 
-        public init(priority: TaskPriority? = nil,
-                    _ effects: [AnyEffect<Element>]) {
+        public init(
+            priority: TaskPriority? = nil,
+            _ effects: [AnyEffect<Element>])
+        {
             self.priority = priority
             self.effects = effects
         }

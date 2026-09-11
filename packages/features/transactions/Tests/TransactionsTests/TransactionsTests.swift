@@ -130,6 +130,7 @@ final class TransactionsTests: XCTestCase {
             case .transactions(let items):
                 XCTAssertTrue(viewModel.isFiltered)
                 XCTAssertEqual(items.count, 1)
+
             default:
                 XCTFail()
             }

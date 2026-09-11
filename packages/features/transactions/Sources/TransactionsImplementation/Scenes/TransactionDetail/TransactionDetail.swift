@@ -44,6 +44,7 @@ struct TransactionDetail: View {
     // MARK: Private
 
     @Environment(\.presentationMode) private var presentationMode
+
     private let viewModel: TransactionDetail.ViewModel
 
     private func dismissScreen() {

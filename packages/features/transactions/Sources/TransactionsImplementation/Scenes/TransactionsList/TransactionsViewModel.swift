@@ -24,7 +24,7 @@ final class TransactionsViewModel: ObservableObject {
     }
 
     @Published private(set) var transactions: [PaymentTransaction] = []
-    @Published private(set) var state: TransactionsViewModel.State = .idle
+    @Published private(set) var state = TransactionsViewModel.State.idle
     @Published private(set) var categories: [Category] = []
     @Published var hasError = false
     var cachedTransactios: [PaymentTransaction] = []
@@ -129,7 +129,6 @@ final class TransactionsViewModel: ObservableObject {
     }
 }
 
-
 // MARK: - TransactionsReducer
 
 final class TransactionsReducer: Reducer {
@@ -171,6 +170,7 @@ final class TransactionsReducer: Reducer {
                 guard let self else { return .none }
                 return await fetchTransactions()
             }
+
         case .refreshTRansactions:
             return .concat(
                 .single { [weak self] in
@@ -178,14 +178,17 @@ final class TransactionsReducer: Reducer {
                     return await fetchTransactions()
                 },
                 .just(.applyFilters))
+
         case .set(let transactions, let categories):
             state.categories = categories
             state.transactions = transactions
             state.cachedTransactios = transactions
             return .none
+
         case .setError:
             state.hasError = true
             return .none
+
         case .applyFilters:
             var result = state.cachedTransactios
             result = result
@@ -195,12 +198,15 @@ final class TransactionsReducer: Reducer {
             return .concat(
                 .just(.setTransactions(result)),
                 .just(.setFiltered(isFiltered)))
+
         case .setTransactions(let transactions):
             state.transactions = transactions
             return .none
+
         case .setFiltered(let isFiltered):
             state.isFiltered = isFiltered
             return .none
+
         case .none:
             return .none
         }
@@ -208,8 +214,8 @@ final class TransactionsReducer: Reducer {
 
     // MARK: Private
 
-
     private let transactionsService: TransactionsService
+
     private func fetchTransactions() async -> Action {
         do {
             let response = try await transactionsService.fetchTansactions()

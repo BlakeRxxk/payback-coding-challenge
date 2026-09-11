@@ -1,11 +1,11 @@
-//import Foundation
-//import XCTest
+// import Foundation
+// import XCTest
 //
-//@testable import NetworkingAPI
+// @testable import NetworkingAPI
 //
 //// MARK: - NetworkAPITests
 //
-//final class NetworkAPITests: XCTestCase {
+// final class NetworkAPITests: XCTestCase {
 //
 //    var httpClient: HTTPClient!
 //
@@ -35,20 +35,20 @@
 //            XCTFail("Error occurred: \(error)")
 //        }
 //    }
-//}
+// }
 //
 //// MARK: - MockAPIRoute
 //
-//enum MockAPIRoute {
+// enum MockAPIRoute {
 //    /// Base API URL to create requests from
 //    static var baseURL = URL(staticString: "https://google.com")
 //
 //    case route1
-//}
+// }
 //
 //// MARK: Routable
 //
-//extension MockAPIRoute: Routable {
+// extension MockAPIRoute: Routable {
 //    var extraHTTPHeaders: [String: String] {
 //        [:]
 //    }
@@ -63,11 +63,11 @@
 //        // swiftlint:disable:next force_unwrapping
 //        return URL(string: path, relativeTo: MockAPIRoute.baseURL)!
 //    }
-//}
+// }
 //
 //// MARK: - MockURLProtocol
 //
-//class MockURLProtocol: URLProtocol {
+// class MockURLProtocol: URLProtocol {
 //    static var mockResponse: Data?
 //    static var mockResponseCode = 200
 //
@@ -97,4 +97,4 @@
 //    }
 //
 //    override func stopLoading() { }
-//}
+// }

@@ -3,10 +3,10 @@ import Foundation
 private func components(forKey key: String, value: Any) -> [URLQueryItem] {
     switch value {
     case let array as [Any]:
-        return array.map { URLQueryItem(name: key, value: String(describing: $0)) }
+        array.map { URLQueryItem(name: key, value: String(describing: $0)) }
 
     default:
-        return [URLQueryItem(name: key, value: String(describing: value))]
+        [URLQueryItem(name: key, value: String(describing: value))]
     }
 }
 

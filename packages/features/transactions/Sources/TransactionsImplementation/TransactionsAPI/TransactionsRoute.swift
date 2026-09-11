@@ -19,15 +19,14 @@ enum TransactionsRoute {
 
 extension TransactionsRoute: Routable, Sendable {
     var url: URL {
-        let path = switch self {
-        case .all: "/transactions"
-        }
+        let path =
+            switch self {
+            case .all: "/transactions"
+            }
         return URL(string: path, relativeTo: TransactionsRoute.baseURL)!
     }
 
     var extraHTTPHeaders: [String: String] {
-        let extraHeaders: [String: String] = [:]
-
-        return extraHeaders
+        [:]
     }
 }

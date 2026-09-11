@@ -4,8 +4,10 @@ public actor Store<R: Reducer> {
 
     // MARK: Lifecycle
 
-    public init(reducer: @Sendable @autoclosure () -> R,
-                state: State) {
+    public init(
+        reducer: @Sendable @autoclosure () -> R,
+        state: State)
+    {
         initialState = state
         self.state = state
         self.reducer = reducer()
@@ -15,7 +17,7 @@ public actor Store<R: Reducer> {
     }
 
     deinit {
-        tasks.forEach { $0.value.cancel() }
+        for task in tasks { task.value.cancel() }
         bindingTask?.cancel()
     }
 
@@ -62,7 +64,7 @@ public actor Store<R: Reducer> {
 
     public func reset() {
         bindExternalEffect()
-        tasks.forEach { $0.value.cancel() }
+        for task in tasks { task.value.cancel() }
         tasks.removeAll()
         actionQueue.removeAll()
     }

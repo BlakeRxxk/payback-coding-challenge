@@ -1,5 +1,5 @@
-import Foundation
 import Core
+import Foundation
 import SwiftUI
 
 struct TotalAmount: View {
@@ -13,8 +13,9 @@ struct TotalAmount: View {
 
     // MARK: Internal
 
-    let viewModel: TotalAmount.ViewModel
     @Binding var isPanelVisible: Bool
+
+    let viewModel: TotalAmount.ViewModel
 
     var body: some View {
         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0)) {

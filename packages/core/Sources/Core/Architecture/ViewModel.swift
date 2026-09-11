@@ -8,8 +8,10 @@ public final class ViewModel<R: Reducer> {
 
     // MARK: Lifecycle
 
-    public init(reducer: @Sendable @autoclosure () -> R,
-                state: State) {
+    public init(
+        reducer: @Sendable @autoclosure () -> R,
+        state: State)
+    {
         initialState = state
         self.state = state
         store = Store(

@@ -19,7 +19,7 @@ iOS SwiftUI app (test assignment). No README, no CI, no single top-level `Packag
 
 - Run the mock server: `make mock_server` (runs `python3 tools/mock-server/server.py`; stdlib only, no venv/deps).
 - `make kill_xcode` kills Xcode + Simulator (use carefully).
-- No build/test targets in the Makefile. Use Xcode for the app.
+- Lint/format all packages: `make lint` / `make format` (run the `FormatSwift` command plugin via SPM, covered below). There's no root build/test target in the Makefile. Use Xcode for the app, and `swift test --package-path ...` per package for tests.
 - Focused tests per module: `swift test --package-path packages/features/transactions` (and likewise for `packages/features/feed`, `packages/networking`, `packages/core`, `packages/design-system`).
 
 ## Tests
@@ -31,8 +31,11 @@ iOS SwiftUI app (test assignment). No README, no CI, no single top-level `Packag
 
 `tools/mock-server/server.py` serves `GET localhost:3000/transactions` from `PBTransactions.json` but is **deliberately flaky**: ~20% 500 errors and a random 0.2–3s delay. The loading/error states in the app are driven by this. Don't "fix" or document away the flakiness, and don't be surprised when CI-like runs intermittently fail — retry.
 
+## Lint & format
+
+- Every module `Package.swift` depends on `https://github.com/BlakeRxxk/swift-style-guide` and every target wires its `FormatSwift` command plugin (bundles SwiftFormat + SwiftLint with a shared style guide). Run it from Xcode (right-click a package → Plugin → `FormatSwift`) or via `make lint` / `make format`. Cleanup only runs with `make format`; `make lint` checks SwiftFormat conformance + SwiftLint `--strict` and fails on violations.
+
 ## Gotchas
 
-- Every module `Package.swift` declares `https://github.com/BlakeRxxk/swift-style-guide` as a dependency, but no target actually uses it (no plugin, no import). It's convention-only; ignore it when wiring targets.
 - Commit style is terse and ad-hoc (`init`, `Update .gitignore`); no enforced conventions.
 - `.swiftpm/` dirs and `TransactionsTests.xctestplan` references in the pbxproj are stale/ignored artifacts.

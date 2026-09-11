@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - AsyncViewStateSequence
+// MARK: - ViewStateStream
 
 @MainActor
 @dynamicMemberLookup
@@ -13,7 +13,7 @@ public final class ViewStateStream<State>: AsyncSequence where State: Sendable &
     }
 
     deinit {
-        continuations.forEach { $0.finish() }
+        for continuation in continuations { continuation.finish() }
     }
 
     // MARK: Public
@@ -23,8 +23,7 @@ public final class ViewStateStream<State>: AsyncSequence where State: Sendable &
     public struct Iterator: AsyncIteratorProtocol {
         public typealias Element = State
 
-        @usableFromInline
-        var iterator: AsyncStream<Element>.Iterator
+        @usableFromInline var iterator: AsyncStream<Element>.Iterator
 
         @usableFromInline
         init(_ iterator: AsyncStream<Element>.Iterator) {
@@ -43,20 +42,19 @@ public final class ViewStateStream<State>: AsyncSequence where State: Sendable &
     }
 
     public subscript<Property>(dynamicMember keyPath: KeyPath<State, Property>)
-        -> AsyncMapSequence<AsyncStream<State>, Property> {
+        -> AsyncMapSequence<AsyncStream<State>, Property>
+    {
         let (stream, continuation) = AsyncStream<Element>.makeStream()
         continuations.append(continuation)
         if let last {
             continuation.yield(last)
         }
-        let sendableKeyPath = SendableKeyPath(keyPath)
-        return stream.map { $0[keyPath: sendableKeyPath.keyPath] }
+        return stream.map { $0[keyPath: keyPath] }
     }
 
     // MARK: Internal
 
-    @usableFromInline
-    let upstream: AsyncStream<Element>
+    @usableFromInline let upstream: AsyncStream<Element>
 
     func send(_ element: Element) {
         last = element
@@ -70,16 +68,6 @@ public final class ViewStateStream<State>: AsyncSequence where State: Sendable &
     private var continuations: [AsyncStream<Element>.Continuation] = []
     private var last: Element?
 
-}
-
-// MARK: - SendableKeyPath
-
-private struct SendableKeyPath<Root, Value>: @unchecked Sendable {
-    let keyPath: KeyPath<Root, Value>
-
-    init(_ keyPath: KeyPath<Root, Value>) {
-        self.keyPath = keyPath
-    }
 }
 
 // MARK: Sendable

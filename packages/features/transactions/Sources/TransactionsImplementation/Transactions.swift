@@ -1,5 +1,5 @@
-import NetworkingAPI
 import Core
+import NetworkingAPI
 import SwiftUI
 import TransactionsAPI
 
@@ -11,7 +11,7 @@ public protocol TransactionsDependency: Dependency {
 
 // MARK: - TransactionsComponent
 
-public final class TransactionsComponent: Component<TransactionsDependency>, Viewable, @unchecked Sendable {
+public final class TransactionsComponent: Component<TransactionsDependency>, Viewable {
 
     // MARK: Public
 

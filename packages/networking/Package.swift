@@ -15,22 +15,25 @@ let package = Package(
             targets: ["NetworkingImplementation"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main")
+        .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main"),
     ],
     targets: [
-        .target(name: "NetworkingAPI", dependencies: [],
-                swiftSettings: [
-                    .enableExperimentalFeature("StrictConcurrency"),
-                ]),
-        .target(name: "NetworkingImplementation", dependencies: ["NetworkingAPI"],
-                swiftSettings: [
-                    .enableExperimentalFeature("StrictConcurrency"),
-                ]),
+        .target(
+            name: "NetworkingAPI",
+            dependencies: [],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
+        .target(
+            name: "NetworkingImplementation",
+            dependencies: ["NetworkingAPI"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]),
         .testTarget(
             name: "NetworkingAPITests",
             dependencies: ["NetworkingAPI"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
             ]),
-    ]
-)
+    ])

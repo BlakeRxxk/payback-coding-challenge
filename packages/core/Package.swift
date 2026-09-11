@@ -12,7 +12,7 @@ let package = Package(
             targets: ["Core"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main")
+        .package(url: "https://github.com/BlakeRxxk/swift-style-guide", branch: "main"),
     ],
     targets: [
         .target(
@@ -26,5 +26,4 @@ let package = Package(
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
             ]),
-    ]
-)
+    ])

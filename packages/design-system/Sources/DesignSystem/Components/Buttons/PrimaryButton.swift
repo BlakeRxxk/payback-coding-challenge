@@ -4,9 +4,11 @@ public struct PrimaryButton: View {
 
     // MARK: Lifecycle
 
-    public init(title: String,
-                isLoading: Binding<Bool>,
-                action: @escaping () -> Void) {
+    public init(
+        title: String,
+        isLoading: Binding<Bool>,
+        action: @escaping () -> Void)
+    {
         _isLoading = isLoading
         self.action = action
         self.title = title
@@ -29,30 +31,34 @@ public struct PrimaryButton: View {
 
     // MARK: Internal
 
+    @Binding var isLoading: Bool
+
     let title: String
     var action: () -> Void = { }
 
-    @Binding var isLoading: Bool
 }
 
 #Preview {
     Group {
         PrimaryButton(
             title: "Preview Title",
-            isLoading: .constant(false)) {
-                // action
-            }
+            isLoading: .constant(false))
+        {
+            // action
+        }
 
         PrimaryButton(
             title: "Preview Loading",
-            isLoading: .constant(true)) {
-                // action
-            }
+            isLoading: .constant(true))
+        {
+            // action
+        }
 
         PrimaryButton(
             title: "Preview Disabled",
-            isLoading: .constant(false)) {
-                // action
-            }.disabled(true)
+            isLoading: .constant(false))
+        {
+            // action
+        }.disabled(true)
     }
 }
