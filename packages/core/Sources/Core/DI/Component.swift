@@ -2,6 +2,9 @@ import Foundation
 
 // MARK: - Component
 
+// `@unchecked Sendable` is required: `sharedInstances` is a mutable dictionary guarded by
+// `NSRecursiveLock`, so the class is thread-safe in a way the compiler cannot verify.
+// swiftlint:disable:next no_unchecked_sendable
 open class Component<DependencyType>: Dependency, @unchecked Sendable {
 
     // MARK: Lifecycle
@@ -37,6 +40,6 @@ open class Component<DependencyType>: Dependency, @unchecked Sendable {
 
 // MARK: - EmptyComponent
 
-open class EmptyComponent: EmptyDependency, @unchecked Sendable {
+open class EmptyComponent: EmptyDependency {
     public init() { }
 }
