@@ -91,6 +91,32 @@ final class ComponentKitTests: XCTestCase {
         XCTAssertFalse(button.isLoading)
         XCTAssertTrue(button.isEnabled)
     }
+
+    // MARK: Link Button
+
+    func testLinkButtonDefaultTitle() {
+        let button = LinkButton(title: "Retry")
+
+        XCTAssertEqual(button.title(for: .normal), "Retry")
+    }
+
+    // MARK: Toast
+
+    func testToastViewExposesViewModel() {
+        let viewModel = Toast.ViewModel(title: "Error", description: "Something went wrong", actionTitle: "Retry")
+        let toast = Toast(viewModel: viewModel)
+
+        XCTAssertEqual(toast.viewModel.title, "Error")
+        XCTAssertEqual(toast.viewModel.description, "Something went wrong")
+        XCTAssertEqual(toast.viewModel.actionTitle, "Retry")
+        XCTAssertEqual(toast.viewModel.duration, 3.0)
+
+        toast.configure(with: .init(title: "Fatal Error", description: "Oops", actionTitle: "Try again"))
+
+        XCTAssertEqual(toast.viewModel.title, "Fatal Error")
+        XCTAssertEqual(toast.viewModel.description, "Oops")
+        XCTAssertEqual(toast.viewModel.actionTitle, "Try again")
+    }
 }
 
 // MARK: - UIColor + rgba

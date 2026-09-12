@@ -70,9 +70,16 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
             viewController.view.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor),
         ])
         viewController.didMove(toParent: navigationController)
+        autoDismissTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(nanoseconds: Self.errorToastDurationNanoseconds)
+            guard !Task.isCancelled else { return }
+            self?.detachErrorToast()
+        }
     }
 
     func detachErrorToast() {
+        autoDismissTask?.cancel()
+        autoDismissTask = nil
         guard let errorToastRouter else { return }
         self.errorToastRouter = nil
         let viewController = errorToastRouter.viewControllable.uiviewController
@@ -84,6 +91,8 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
 
     // MARK: Private
 
+    private static let errorToastDurationNanoseconds: UInt64 = 3_000_000_000
+
     private let navigationController: NavigationController
     private let transactionsListBuilder: TransactionsListBuildable
     private let transactionsDetailsBuilder: TransactionsDetailsBuildable
@@ -92,6 +101,7 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
     private var detailsRouter: TransactionsDetailsRouting?
     private var detailsPresentationController: UINavigationController?
     private var errorToastRouter: ErrorToastRouting?
+    private var autoDismissTask: Task<Void, Never>?
 
     private func attachTransactionsList() {
         let router = transactionsListBuilder.build(withListener: interactor)

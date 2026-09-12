@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: ToastView.ViewModel
+// MARK: Toast.ViewModel
 
 extension Toast {
     public struct ViewModel {

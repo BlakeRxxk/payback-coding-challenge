@@ -1,28 +1,39 @@
 import Core
-import SwiftUI
+import DesignSystem
 import UIKit
 
 // MARK: - ErrorToastViewControllable
 
 protocol ErrorToastViewControllable: ViewControllable {
-    func embed(content: some View)
+    func configure(toast: Toast)
 }
 
 // MARK: - ErrorToastViewController
 
 final class ErrorToastViewController: UIViewController, ErrorToastViewControllable {
 
-    func embed(content: some View) {
-        let hostingController = UIHostingController(rootView: content)
-        addChild(hostingController)
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(hostingController.view)
+    override func loadView() {
+        view = PassthroughView()
+    }
+
+    func configure(toast: Toast) {
+        toast.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(toast)
         NSLayoutConstraint.activate([
-            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            toast.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toast.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            toast.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-        hostingController.didMove(toParent: self)
+    }
+}
+
+// MARK: ErrorToastViewController.PassthroughView
+
+extension ErrorToastViewController {
+    private final class PassthroughView: UIView {
+        override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+            let hit = super.hitTest(point, with: event)
+            return hit == self ? nil : hit
+        }
     }
 }

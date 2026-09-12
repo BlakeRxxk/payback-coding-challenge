@@ -1,51 +1,82 @@
-import Foundation
-import SwiftUI
+import UIKit
 
 // MARK: - Toast
 
-public struct Toast: View {
+@MainActor
+public final class Toast: UIView {
 
     // MARK: Lifecycle
 
-    public init(viewModel: Toast.ViewModel, action: @escaping () -> Void = { }) {
+    public init(viewModel: ViewModel, action: @escaping () -> Void = { }) {
         self.viewModel = viewModel
         self.action = action
+        super.init(frame: .zero)
+        setUp()
+        apply(viewModel)
+    }
+
+    @available(*, unavailable)
+    public required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: Public
 
-    public var body: some View {
-        VStack(content: {
-            Spacer()
+    public private(set) var viewModel: ViewModel
 
-            VStack {
-                HStack(alignment: .center, spacing: 8) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(viewModel.title).style(.body12Semibold, color: Color.Error.error2)
-                        Text(viewModel.description).style(.body16Semibold)
-                    }
-                    Spacer()
-                    Button {
-                        action()
-                    } label: {
-                        Text(viewModel.actionTitle)
-                    }.buttonStyle(LinkButton.makeDefaultStyle())
-                }
-                .padding(.horizontal, 24)
-                .padding(.vertical, 16)
-            }
-            .background(Color.Shades.shade1)
-            .cornerRadius(12)
-            .shadow(.drop)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .inset(by: 0.5)
-                    .stroke(Color.Neutrals.neutral3, lineWidth: 1))
-        })
+    public func configure(with viewModel: ViewModel) {
+        self.viewModel = viewModel
+        apply(viewModel)
     }
 
     // MARK: Private
 
-    private let viewModel: Toast.ViewModel
     private let action: () -> Void
+    private let titleLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private lazy var actionButton = LinkButton(title: viewModel.actionTitle, action: action)
+    private let textStack = UIStackView()
+    private let contentStack = UIStackView()
+
+    private func setUp() {
+        backgroundColor = UIColor.Shades.shade1
+        layer.cornerRadius = 12
+        layer.borderColor = UIColor.Neutrals.neutral3.cgColor
+        layer.borderWidth = 1
+        applyShadow(.drop)
+
+        titleLabel.style(.body12Semibold, color: UIColor.Error.error2)
+        titleLabel.numberOfLines = 0
+        descriptionLabel.style(.body16Semibold)
+        descriptionLabel.numberOfLines = 0
+        textStack.addArrangedSubview(titleLabel)
+        textStack.addArrangedSubview(descriptionLabel)
+        textStack.axis = .vertical
+        textStack.alignment = .leading
+        textStack.spacing = 2
+        textStack.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
+        contentStack.addArrangedSubview(textStack)
+        contentStack.addArrangedSubview(actionButton)
+        contentStack.axis = .horizontal
+        contentStack.alignment = .center
+        contentStack.spacing = 8
+        contentStack.isLayoutMarginsRelativeArrangement = true
+        contentStack.layoutMargins = UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
+
+        contentStack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(contentStack)
+        NSLayoutConstraint.activate([
+            contentStack.topAnchor.constraint(equalTo: topAnchor),
+            contentStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentStack.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
+
+    private func apply(_ viewModel: ViewModel) {
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        actionButton.setTitle(viewModel.actionTitle, for: .normal)
+    }
 }

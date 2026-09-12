@@ -24,8 +24,8 @@ final class ErrorToastInteractor: Interactor, ErrorToastInteractable {
         super.didBecomeActive()
         Task { @MainActor in
             let viewModel = component.transactionsViewModel
-            viewController.embed(
-                content: Toast(
+            viewController.configure(
+                toast: Toast(
                     viewModel: .init(title: Localized.title, description: Localized.description, actionTitle: Localized.actionTitle))
                 {
                     Task {
