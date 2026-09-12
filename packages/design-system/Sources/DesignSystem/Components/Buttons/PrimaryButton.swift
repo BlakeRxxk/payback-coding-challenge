@@ -7,7 +7,7 @@ public final class PrimaryButton: UIButton {
 
     // MARK: Lifecycle
 
-    public init(title: String, isLoading: Bool = false, action: @escaping () -> Void) {
+    public init(title: String, isLoading: Bool = false, action: @escaping () -> Void = { }) {
         self.action = action
         self.isLoading = isLoading
         super.init(frame: .zero)
