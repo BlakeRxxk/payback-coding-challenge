@@ -1,41 +1,17 @@
 import SwiftUI
 
-// MARK: - Typography
+// MARK: - Typography (Legacy)
 
+@available(*, deprecated, message: "Use UIFont.typography / UILabel.style from the UIKit design system instead.")
 public struct Typography: ViewModifier {
 
     // MARK: Lifecycle
 
-    public init(style: Style) {
+    public init(style: TypographyStyle) {
         self.style = style
     }
 
     // MARK: Public
-
-    public enum Style {
-        case headerRegular
-        case headerSemibold
-
-        case body18Regular
-        case body18Medium
-        case body18Semibold
-
-        case body16Regular
-        case body16Medium
-        case body16Semibold
-
-        case body14Regular
-        case body14Semibold
-
-        case body13Regular
-        case body13Semibold
-
-        case body12Regular
-        case body12Medium
-        case body12Semibold
-
-        case micro
-    }
 
     public func body(content: Content) -> some View {
         switch style {
@@ -60,5 +36,5 @@ public struct Typography: ViewModifier {
 
     // MARK: Internal
 
-    var style: Style
+    var style: TypographyStyle
 }

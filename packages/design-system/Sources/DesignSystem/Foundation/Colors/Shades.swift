@@ -1,13 +1,15 @@
-import SwiftUI
+import UIKit
 
-extension Color {
+// MARK: - UIColor.Shades
+
+extension UIColor {
     /// Colors used for backgrounds, text, dividers, etc.
     public enum Shades {
-        public static let shade1 = Color.white
-        public static let shade2 = Color(red: 0.133, green: 0.133, blue: 0.133)
+        public static let shade1 = UIColor.white
+        public static let shade2 = UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1)
         /// shade2 with opacity 5%
-        public static let shade3 = Color(red: 0.133, green: 0.133, blue: 0.133).opacity(0.05)
+        public static let shade3 = UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 0.05)
         /// shade2 with opacity 30%
-        public static let shade4 = Color(red: 0.133, green: 0.133, blue: 0.133).opacity(0.3)
+        public static let shade4 = UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 0.3)
     }
 }

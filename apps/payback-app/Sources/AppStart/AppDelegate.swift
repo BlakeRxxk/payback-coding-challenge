@@ -1,5 +1,4 @@
 import DesignSystem
-import SwiftUI
 import UIKit
 
 @main
@@ -32,16 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureAppearance() {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
-        tabBarAppearance.backgroundColor = UIColor(Color.Shades.shade1)
+        tabBarAppearance.backgroundColor = UIColor.Shades.shade1
         UITabBar.appearance().standardAppearance = tabBarAppearance
 
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithTransparentBackground()
-        navigationBarAppearance.backgroundColor = UIColor(Color.Shades.shade1)
-        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.Shades.shade2)]
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(Color.Shades.shade2)]
+        navigationBarAppearance.backgroundColor = UIColor.Shades.shade1
+        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.Shades.shade2]
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.Shades.shade2]
 
-        UISearchBar.appearance().tintColor = UIColor(Color.Accents.accent2)
+        UISearchBar.appearance().tintColor = UIColor.Accents.accent2
 
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
