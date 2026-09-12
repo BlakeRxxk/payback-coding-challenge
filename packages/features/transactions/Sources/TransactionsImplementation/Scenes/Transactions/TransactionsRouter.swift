@@ -40,12 +40,15 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
         let router = transactionsDetailsBuilder.build(with: transaction, listener: interactor)
         attachChild(router)
         detailsRouter = router
-        navigationController.present(router.viewControllable.uiviewController, animated: true)
+        let detailsNavigationController = UINavigationController(rootViewController: router.viewControllable.uiviewController)
+        detailsPresentationController = detailsNavigationController
+        navigationController.present(detailsNavigationController, animated: true)
     }
 
     func detachDetails() {
         guard let detailsRouter else { return }
         self.detailsRouter = nil
+        detailsPresentationController = nil
         detachChild(detailsRouter)
     }
 
@@ -87,6 +90,7 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
     private let errorToastBuilder: ErrorToastBuildable
 
     private var detailsRouter: TransactionsDetailsRouting?
+    private var detailsPresentationController: UINavigationController?
     private var errorToastRouter: ErrorToastRouting?
 
     private func attachTransactionsList() {

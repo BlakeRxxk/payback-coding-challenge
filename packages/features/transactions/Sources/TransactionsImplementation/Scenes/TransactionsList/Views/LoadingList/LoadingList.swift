@@ -5,7 +5,7 @@ struct LoadingList: View {
     var body: some View {
         VStack {
             Spacer()
-            EllipsesLoader()
+            LegacyEllipsesLoader()
             Spacer()
         }
         .frame(maxWidth: .infinity)

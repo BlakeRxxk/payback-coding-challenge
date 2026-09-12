@@ -32,7 +32,7 @@ final class TransactionsDetailsInteractor: Interactor, TransactionsDetailsIntera
         viewController.onDismiss = { [weak self] in
             self?.listener?.transactionsDetailsDidDisappear()
         }
-        viewController.embed(content: TransactionDetail(viewModel: .init(from: transaction)))
+        viewController.configure(with: TransactionsDetailsViewModel(from: transaction))
     }
 
     // MARK: Private
