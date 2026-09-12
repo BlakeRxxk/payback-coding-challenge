@@ -1,6 +1,3 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
-
 // RIBs is re-exported so feature modules get the architecture layer
 // (Router, Interactor, Builder, ...) through `import Core` alone.
 // NeedleFoundation is intentionally NOT re-exported: it declares
