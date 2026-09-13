@@ -32,7 +32,6 @@ public final class TransactionsBuilder: Builder<TransactionsComponent>, Transact
             interactor: interactor,
             navigationController: navigationController,
             transactionsListBuilder: TransactionsListBuilder(dependency: dependency),
-            transactionsDetailsBuilder: TransactionsDetailsBuilder(dependency: dependency),
             errorToastBuilder: ErrorToastBuilder(dependency: dependency))
         interactor.router = router
         return router

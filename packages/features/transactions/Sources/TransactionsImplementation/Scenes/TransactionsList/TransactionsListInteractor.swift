@@ -3,13 +3,7 @@ import TransactionsAPI
 
 // MARK: - TransactionsListInteractable
 
-protocol TransactionsListInteractable: Interactable { }
-
-// MARK: - TransactionsListListener
-
-protocol TransactionsListListener: AnyObject {
-    func didSelectTransaction(_ transaction: PaymentTransaction)
-}
+protocol TransactionsListInteractable: Interactable, TransactionsDetailsListener { }
 
 // MARK: - TransactionsListInteractor
 
@@ -17,13 +11,14 @@ final class TransactionsListInteractor: Interactor, TransactionsListInteractable
 
     // MARK: Lifecycle
 
-    init(component: TransactionsComponent, viewController: TransactionsListViewControllable, listener: TransactionsListListener) {
+    init(component: TransactionsComponent, viewController: TransactionsListViewControllable) {
         self.component = component
         self.viewController = viewController
-        self.listener = listener
     }
 
     // MARK: Internal
+
+    weak var router: TransactionsListRouter?
 
     // MARK: Interactor
 
@@ -32,15 +27,20 @@ final class TransactionsListInteractor: Interactor, TransactionsListInteractable
         Task { @MainActor in
             let viewModel = component.transactionsViewModel
             viewController.embed(content: TransactionsListScene(viewModel: viewModel) { [weak self] transaction in
-                self?.listener?.didSelectTransaction(transaction)
+                self?.router?.presentDetails(for: transaction)
             })
             await viewModel.fetchTransactions()
         }
+    }
+
+    // MARK: TransactionsDetailsListener
+
+    func transactionsDetailsDidDisappear() {
+        router?.detachDetails()
     }
 
     // MARK: Private
 
     private let component: TransactionsComponent
     private let viewController: TransactionsListViewControllable
-    private weak var listener: TransactionsListListener?
 }

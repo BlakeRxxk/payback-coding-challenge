@@ -1,5 +1,4 @@
 import Core
-import TransactionsAPI
 import UIKit
 
 // MARK: - TransactionsRouter
@@ -12,12 +11,10 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
         interactor: TransactionsInteractable,
         navigationController: NavigationController,
         transactionsListBuilder: TransactionsListBuildable,
-        transactionsDetailsBuilder: TransactionsDetailsBuildable,
         errorToastBuilder: ErrorToastBuildable)
     {
         self.navigationController = navigationController
         self.transactionsListBuilder = transactionsListBuilder
-        self.transactionsDetailsBuilder = transactionsDetailsBuilder
         self.errorToastBuilder = errorToastBuilder
         super.init(interactor: interactor)
     }
@@ -31,22 +28,6 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
     override func didLoad() {
         super.didLoad()
         attachTransactionsList()
-    }
-
-    // MARK: Transactions
-
-    func presentDetails(for transaction: PaymentTransaction) {
-        guard detailsRouter == nil else { return }
-        let router = transactionsDetailsBuilder.build(with: transaction, listener: interactor)
-        attachChild(router)
-        detailsRouter = router
-        navigationController.present(router.viewControllable.uiviewController, animated: true)
-    }
-
-    func detachDetails() {
-        guard let detailsRouter else { return }
-        self.detailsRouter = nil
-        detachChild(detailsRouter)
     }
 
     // MARK: Error Toast
@@ -83,14 +64,12 @@ final class TransactionsRouter: Router<TransactionsInteractable>, TransactionsRo
 
     private let navigationController: NavigationController
     private let transactionsListBuilder: TransactionsListBuildable
-    private let transactionsDetailsBuilder: TransactionsDetailsBuildable
     private let errorToastBuilder: ErrorToastBuildable
 
-    private var detailsRouter: TransactionsDetailsRouting?
     private var errorToastRouter: ErrorToastRouting?
 
     private func attachTransactionsList() {
-        let router = transactionsListBuilder.build(withListener: interactor)
+        let router = transactionsListBuilder.build(navigationController: navigationController)
         attachChild(router)
         navigationController.viewControllers = [router.viewControllable.uiviewController]
     }

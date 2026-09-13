@@ -1,9 +1,10 @@
 import Core
+import TransactionsAPI
 
 // MARK: - TransactionsListBuildable
 
 protocol TransactionsListBuildable: Buildable {
-    func build(withListener listener: TransactionsListListener) -> TransactionsListRouting
+    func build(navigationController: NavigationController) -> TransactionsListRouting
 }
 
 // MARK: - TransactionsListRouting
@@ -22,9 +23,15 @@ final class TransactionsListBuilder: Builder<TransactionsComponent>, Transaction
 
     // MARK: Internal
 
-    func build(withListener listener: TransactionsListListener) -> TransactionsListRouting {
+    func build(navigationController: NavigationController) -> TransactionsListRouting {
         let viewController = TransactionsListViewController()
-        let interactor = TransactionsListInteractor(component: dependency, viewController: viewController, listener: listener)
-        return TransactionsListRouter(interactor: interactor, viewController: viewController)
+        let interactor = TransactionsListInteractor(component: dependency, viewController: viewController)
+        let router = TransactionsListRouter(
+            interactor: interactor,
+            viewController: viewController,
+            navigationController: navigationController,
+            transactionsDetailsBuilder: TransactionsDetailsBuilder(dependency: dependency))
+        interactor.router = router
+        return router
     }
 }

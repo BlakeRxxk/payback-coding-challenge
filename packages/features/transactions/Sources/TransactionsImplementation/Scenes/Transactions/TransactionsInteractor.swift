@@ -1,10 +1,9 @@
 import Combine
 import Core
-import TransactionsAPI
 
 // MARK: - TransactionsInteractable
 
-protocol TransactionsInteractable: Interactable, TransactionsListListener, TransactionsDetailsListener { }
+protocol TransactionsInteractable: Interactable { }
 
 // MARK: - TransactionsInteractor
 
@@ -43,18 +42,6 @@ final class TransactionsInteractor: Interactor, TransactionsInteractable {
     override func willResignActive() {
         super.willResignActive()
         errorCancellable = nil
-    }
-
-    // MARK: TransactionsListListener
-
-    func didSelectTransaction(_ transaction: PaymentTransaction) {
-        router?.presentDetails(for: transaction)
-    }
-
-    // MARK: TransactionsDetailsListener
-
-    func transactionsDetailsDidDisappear() {
-        router?.detachDetails()
     }
 
     // MARK: Private
