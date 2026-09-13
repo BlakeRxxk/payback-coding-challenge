@@ -36,10 +36,11 @@ final class TransactionsDetailsViewController: UIViewController, TransactionsDet
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if isBeingDismissed {
-            onDismiss?()
-            onDismiss = nil
+        guard isBeingDismissed || isMovingFromParent || (presentingViewController == nil && navigationController == nil) else {
+            return
         }
+        onDismiss?()
+        onDismiss = nil
     }
 
     // MARK: Private
