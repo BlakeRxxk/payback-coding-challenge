@@ -1,5 +1,6 @@
 import Core
 import TransactionsAPI
+import UIKit
 
 // MARK: - TransactionsListRouter
 
@@ -25,7 +26,8 @@ final class TransactionsListRouter: ViewableRouter<TransactionsListInteractable,
         let router = transactionsDetailsBuilder.build(with: transaction, listener: interactor)
         attachChild(router)
         detailsRouter = router
-        navigationController.present(router.viewControllable.uiviewController, animated: true)
+        let detailsNavigationController = UINavigationController(rootViewController: router.viewControllable.uiviewController)
+        navigationController.present(detailsNavigationController, animated: true)
     }
 
     func detachDetails() {
